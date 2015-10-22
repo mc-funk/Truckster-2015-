@@ -1,0 +1,6 @@
+venv/
+bower_components/
+node_modules/
+.tmp/
+src/static/app/
+*.pyc

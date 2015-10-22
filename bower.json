@@ -1,0 +1,16 @@
+{
+  "name": "exohack_example",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-route": "~1.4.7",
+    "angular-touch": "~1.4.7",
+    "angular-material": "~0.11.4",
+    "lodash": "~3.10.1",
+    "jquery": "~2.1.4",
+    "requirejs": "^2.1.0"
+  },
+  "appPath": "_static",
+  "moduleName": "exohackApp"
+}
