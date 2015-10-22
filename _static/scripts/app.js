@@ -1,6 +1,12 @@
 /*jshint unused: vars */
-define(['angular', 'controllers/main', 'controllers/about', 'controllers/nav', 'controllers/header'],
-  function (angular, MainCtrl, AboutCtrl, NavCtrl, HeaderCtrl) {
+define([
+  'angular',
+  'services/apiService',
+  'controllers/main',
+  'controllers/about',
+  'controllers/nav',
+  'controllers/header'],
+  function (angular, ApiService, MainCtrl, AboutCtrl, NavCtrl, HeaderCtrl) {
   'use strict';
 
   /**
@@ -13,6 +19,7 @@ define(['angular', 'controllers/main', 'controllers/about', 'controllers/nav', '
    */
   return angular
     .module('exohackApp', [
+      'exohackApp.services.ApiService',
       'exohackApp.controllers.MainCtrl',
       'exohackApp.controllers.AboutCtrl',
       'exohackApp.controllers.NavCtrl',
@@ -26,6 +33,10 @@ define(['angular', 'controllers/main', 'controllers/about', 'controllers/nav', '
       'ngMdIcons'
       //'ngTouch'
   ])
+    .constant('apiConfig', {
+      baseUrl: 'https://api.exohack.io',
+      cik: '36af2f633abad735b5472281dbc46e8284a122d1'
+    })
     .config(function ($mdThemingProvider, $routeProvider) {
       $mdThemingProvider.theme('default')
         .primaryPalette('blue')
