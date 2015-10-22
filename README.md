@@ -16,7 +16,7 @@
 
 ## Run Locally
 
-- `venv/bin/python ./bin/run.py`
+- `venv/bin/gunicorn heroku:app`
 
 ## Run on Heroku/Dokku
 
