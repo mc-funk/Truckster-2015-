@@ -1,6 +1,6 @@
 /*jshint unused: vars */
-define(['angular', 'controllers/main', 'controllers/about'],
-  function (angular, MainCtrl, AboutCtrl) {
+define(['angular', 'controllers/main', 'controllers/about', 'controllers/nav', 'controllers/header'],
+  function (angular, MainCtrl, AboutCtrl, NavCtrl, HeaderCtrl) {
   'use strict';
 
   /**
@@ -15,15 +15,22 @@ define(['angular', 'controllers/main', 'controllers/about'],
     .module('exohackApp', [
       'exohackApp.controllers.MainCtrl',
       'exohackApp.controllers.AboutCtrl',
-      /*angJSDeps*/
+      'exohackApp.controllers.NavCtrl',
+      'exohackApp.controllers.HeaderCtrl',
+/*angJSDeps*/
       'ngAria',
       'ngResource',
       'ngRoute',
       'ngAnimate',
-      'ngMaterial'
+      'ngMaterial',
+      'ngMdIcons'
       //'ngTouch'
   ])
-    .config(function ($routeProvider) {
+    .config(function ($mdThemingProvider, $routeProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('blue')
+        .accentPalette('light-blue')
+        .warnPalette('red');
       $routeProvider
         .when('/', {
           templateUrl: 'static/app/views/main.html',

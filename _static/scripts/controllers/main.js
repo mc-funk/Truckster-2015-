@@ -8,10 +8,7 @@ define(['angular'], function (angular) {
    * # MainCtrl
    * Controller of the exohackApp
    */
-  angular.module('exohackApp.controllers.MainCtrl', ['ngMaterial'])
+  angular.module('exohackApp.controllers.MainCtrl', ['ngMaterial', 'ngMdIcons'])
     .controller('MainCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav) {
-      $scope.toggleSidenav = function (menuId) {
-        $mdSidenav(menuId).toggle();
-      };
     }]);
 });

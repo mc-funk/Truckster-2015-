@@ -1,5 +1,35 @@
-.md-toolbar-tools h1 {
-  font-size: inherit;
-  font-weight: inherit;
-  margin: inherit;
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.main {
+  height: 100%;
+}
+
+.header {
+  min-height: 64px;
+}
+
+.sidebar-container {
+  margin-right: 5px;
+  overflow: auto;
+}
+.sidebar-container md-sidenav {
+  min-width: 100%;
+  max-width: 100%;
+}
+.sidebar md-item-content:hover {
+  background-color: #eee;
+}
+.sidebar ng-md-icon {
+  position: relative;
+  top: 3px;
+  fill: #737373;
+}
+.sidebar a {
+  text-decoration: none;
+  color: inherit;
+}
+.sidebar .md-ripple-container {
+  /*position: relative;*/
 }
