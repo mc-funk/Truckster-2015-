@@ -33,3 +33,17 @@ html, body {
 .sidebar .md-ripple-container {
   /*position: relative;*/
 }
+
+.devices-container {
+  border-radius: 4px;
+  margin-bottom: 16px;
+  margin-right: 12px;
+}
+
+.devices-container md-grid-tile-header {
+  background-color: #106CC8;
+}
+
+.devices-container md-grid-tile {
+  background-color: #eee;
+}

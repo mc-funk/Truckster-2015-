@@ -1,0 +1,85 @@
+<div flex layout-fill layout="row">
+  <section flex="50" class="devices-container md-whiteframe-z1" ng-repeat="device in devices">
+    <md-toolbar class="device-toolbar md-primary" layout="row">
+      <h2 class="md-toolbar-tools">
+        <span>{{device.description.name}}</span>
+      </h2>
+    </md-toolbar>
+    <md-tabs md-dynamic-height md-border-bottom class="md-primary">
+      <md-tab label="basic">
+        <md-content class="md-padding">
+          <md-list>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Last Modified: {{device.basic.modified}}</p>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Meta: {{device.description.meta}}</p>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Locked?: {{device.description.locked}}</p>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Public?: {{device.description.public}}</p>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>RID: {{device.client_id}}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-tab>
+      <md-tab label="dataports">
+        <md-content class="md-padding">
+          <md-grid-list md-cols="1" md-row-height="1:1" md-gutter="2px" ng-repeat="dataport in device.dataport">
+            <md-grid-tile>
+              <md-grid-tile-header>
+                <h3>{{dataport.description.name}}</h3>
+              </md-grid-tile-header>
+              <div layout="column" class="md-body-1">
+                <p>RID: {{dataport.rid}}</p>
+                <p>Current Value: {{dataport.currentValue.value}}</p>
+                <p>Data Type: {{dataport.description.format}}</p>
+                <p>Meta: {{dataport.description.meta}}</p>
+                <p>Last Modified: {{dataport.basic.modified}}</p>
+              </div>
+            </md-grid-tile>
+          </md-grid-list>
+        </md-content>
+      </md-tab>
+      <md-tab label="datarules">
+        <md-content class="md-padding">
+          <md-list ng-repeat="datarule in device.datarule">
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Name: {{datarule.description.name}}</p>
+                <p>RID: {{datarule.rid}}</p>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Meta: {{datarule.description.meta}}</p>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Last Modified: {{datarule.basic.modified}}</p>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </section>
+</div>

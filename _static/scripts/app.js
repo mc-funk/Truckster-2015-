@@ -2,11 +2,12 @@
 define([
   'angular',
   'services/apiService',
+  'directives/deviceGrid',
   'controllers/main',
   'controllers/about',
   'controllers/nav',
   'controllers/header'],
-  function (angular, ApiService, MainCtrl, AboutCtrl, NavCtrl, HeaderCtrl) {
+  function (angular, ApiService, DeviceGrid, MainCtrl, AboutCtrl, NavCtrl, HeaderCtrl) {
   'use strict';
 
   /**
@@ -20,6 +21,7 @@ define([
   return angular
     .module('exohackApp', [
       'exohackApp.services.ApiService',
+      'exohackApp.directives.DeviceGrid',
       'exohackApp.controllers.MainCtrl',
       'exohackApp.controllers.AboutCtrl',
       'exohackApp.controllers.NavCtrl',
@@ -33,10 +35,7 @@ define([
       'ngMdIcons'
       //'ngTouch'
   ])
-    .constant('apiConfig', {
-      baseUrl: 'https://api.exohack.io',
-      cik: '36af2f633abad735b5472281dbc46e8284a122d1'
-    })
+    .constant('apiConfig', window.APP_CONFIG)
     .config(function ($mdThemingProvider, $routeProvider) {
       $mdThemingProvider.theme('default')
         .primaryPalette('blue')

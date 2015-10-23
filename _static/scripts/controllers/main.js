@@ -11,11 +11,17 @@ define(['angular'], function (angular) {
   angular.module('exohackApp.controllers.MainCtrl', ['ngMaterial', 'ngMdIcons'])
     .controller('MainCtrl', ['$scope', 'ApiService', function ($scope, apiService) {
       $scope.getDeviceList = function getDeviceList() {
-        var args = [{"alias": ""}, ["dataport", "datarule", "dispatch", "client"], { owned: true }];
-        var calls = [
-          { id: 1, procedure: 'listing', arguments: args }
-        ];
-        apiService.rpc(calls);
+        apiService.getDevices(onSuccess, onError);
+
+        function onSuccess(data) {
+          console.log('got result:');
+          console.log(data);
+        }
+
+        function onError(data) {
+          console.log('error');
+          console.log(data);
+        }
       };
     }]);
 });

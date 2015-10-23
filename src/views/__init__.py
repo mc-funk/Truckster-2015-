@@ -1,4 +1,5 @@
 from flask import render_template
+from flask import current_app
 from flask.views import View
 
 
@@ -26,4 +27,6 @@ class HomePageView(BaseView):
         context = super(HomePageView, self).get_context(**kwargs)
         context['baseName'] = 'ExoHack Example'
         context['appName'] = 'ExoHack'
+        context['APP_CIK'] = current_app.config['APP_CIK']
+        context['API_URL'] = current_app.config['API_URL']
         return context
