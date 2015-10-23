@@ -11,6 +11,7 @@ require.config({
     ngAnimate: '../../bower_components/angular-animate/angular-animate',
     jquery: '../../bower_components/jquery/dist/jquery',
     lodash: '../../bower_components/lodash/lodash',
+    moment: '../../bower_components/moment/moment',
     'angular-material': '../../bower_components/angular-material/angular-material',
     'angular-material-icons': '../../bower_components/angular-material-icons/angular-material-icons.min',
     'angular-resource': '../../bower_components/angular-resource/angular-resource',

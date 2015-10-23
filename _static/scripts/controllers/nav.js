@@ -12,7 +12,7 @@ define(['angular'], function (angular) {
     .controller('NavCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav) {
       $scope.pages = [
         { name: 'Home', route: '#/', icon: 'home' },
-        { name: 'About', route: '#/about', icon: 'help' }
+        { name: 'Stats', route: '#/stats', icon: 'whatshot' }
       ];
     }]);
 });

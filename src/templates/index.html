@@ -23,7 +23,7 @@
 
     <link href="//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="static/app/styles/main.css" rel="stylesheet">
+    <link href="static/app/styles/main.css?cache={{cacheBuster}}" rel="stylesheet">
   </head>
   <body>
     <div class="main" layout="column">
@@ -79,10 +79,11 @@
     <script type="text/javascript">
       window.APP_CONFIG = {
         cik: '{{ APP_CIK }}',
-        baseUrl: '{{ API_URL }}'
+        baseUrl: '{{ API_URL }}',
+        cacheBuster: '{{ cacheBuster }}'
       };
     </script>
-    <script src="static/app/bower_components/requirejs/require.js" data-main="static/app/scripts/main.js"></script>
+    <script src="static/app/bower_components/requirejs/require.js" data-main="static/app/scripts/main.js?cache={{cacheBuster}}"></script>
 
   </body>
 </html>

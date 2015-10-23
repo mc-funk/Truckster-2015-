@@ -1,6 +1,7 @@
 from flask import render_template
 from flask import current_app
 from flask.views import View
+import time
 
 
 class RenderTemplateMixin(object):
@@ -29,4 +30,5 @@ class HomePageView(BaseView):
         context['appName'] = 'ExoHack'
         context['APP_CIK'] = current_app.config['APP_CIK']
         context['API_URL'] = current_app.config['API_URL']
+        context['cacheBuster'] = current_app.config['CACHE_BUSTER']
         return context

@@ -1,4 +1,4 @@
-define(['angular', 'lodash'], function (angular, _) {
+define(['angular', 'lodash', 'moment'], function (angular, _, moment) {
   'use strict';
 
   /**
@@ -39,8 +39,8 @@ define(['angular', 'lodash'], function (angular, _) {
 
       function getStats(onSuccess, onError) {
         return $http.get(apiConfig.baseUrl + '/stats/' + window.location.hostname)
-                    .then(function onSuccess(response) { onSuccess(response.data); },
-                          function onError(response) { onError(response.data); });
+                    .then(function (response) { onSuccess(response); },
+                          function (response) { onError(response); });
       };
 
       // Helper function which retrieves device metadata after getting a listing of device clients
@@ -58,6 +58,7 @@ define(['angular', 'lodash'], function (angular, _) {
             response.data = _.map(zipped, function (tuple) {
               var device = tuple[0].result;
               device['client_id'] = tuple[1];
+              device.description.meta = JSON.parse(device.description.meta);
               return device;
             });
             return response;
@@ -90,6 +91,7 @@ define(['angular', 'lodash'], function (angular, _) {
           var info = resourceTuple[1][0].result;
           var read = resourceTuple[1][1].result;
           info['rid'] = rid;
+          info.description.meta = JSON.parse(info.description.meta);
           if (read.length > 0) {
             info['currentValue'] = {
               timestamp: read[0][0],

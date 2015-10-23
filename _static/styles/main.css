@@ -47,3 +47,8 @@ html, body {
 .devices-container md-grid-tile {
   background-color: #eee;
 }
+
+.md-color-green {
+  background-color: #259b24 !important;
+  color: white;
+}

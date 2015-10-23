@@ -3,11 +3,12 @@ define([
   'angular',
   'services/apiService',
   'directives/deviceGrid',
+  'directives/statsCard',
   'controllers/main',
-  'controllers/about',
+  'controllers/stats',
   'controllers/nav',
   'controllers/header'],
-  function (angular, ApiService, DeviceGrid, MainCtrl, AboutCtrl, NavCtrl, HeaderCtrl) {
+  function (angular, ApiService, DeviceGrid, StatsCard, MainCtrl, StatsCrl, NavCtrl, HeaderCtrl) {
   'use strict';
 
   /**
@@ -22,8 +23,9 @@ define([
     .module('exohackApp', [
       'exohackApp.services.ApiService',
       'exohackApp.directives.DeviceGrid',
+      'exohackApp.directives.StatsCard',
       'exohackApp.controllers.MainCtrl',
-      'exohackApp.controllers.AboutCtrl',
+      'exohackApp.controllers.StatsCtrl',
       'exohackApp.controllers.NavCtrl',
       'exohackApp.controllers.HeaderCtrl',
 /*angJSDeps*/
@@ -43,14 +45,14 @@ define([
         .warnPalette('red');
       $routeProvider
         .when('/', {
-          templateUrl: 'static/app/views/main.html',
+          templateUrl: 'static/app/views/main.html?cache=' + window.APP_CONFIG.cacheBuster,
           controller: 'MainCtrl',
           controllerAs: 'main'
         })
-        .when('/about', {
-          templateUrl: 'static/app/views/about.html',
-          controller: 'AboutCtrl',
-          controllerAs: 'about'
+        .when('/stats', {
+          templateUrl: 'static/app/views/stats.html?cache=' + window.APP_CONFIG.cacheBuster,
+          controller: 'StatsCtrl',
+          controllerAs: 'stats'
         })
         .otherwise({
           redirectTo: '/'

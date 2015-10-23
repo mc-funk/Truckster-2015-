@@ -11,12 +11,17 @@
           <md-list>
             <md-list-item>
               <div class="md-list-item-text">
-                <p>Last Modified: {{device.basic.modified}}</p>
+                <p>Last Modified: {{moment.unix(device.basic.modified).fromNow()}}</p>
               </div>
             </md-list-item>
             <md-list-item>
               <div class="md-list-item-text">
-                <p>Meta: {{device.description.meta}}</p>
+                <p>Location: {{device.description.meta.location || 'Unspecified'}}</p>
+              </div>
+            </md-list-item>
+            <md-list-item>
+              <div class="md-list-item-text">
+                <p>Device Type: {{device.description.meta.device.type}}</p>
               </div>
             </md-list-item>
             <md-list-item>
@@ -45,11 +50,12 @@
                 <h3>{{dataport.description.name}}</h3>
               </md-grid-tile-header>
               <div layout="column" class="md-body-1">
-                <p>RID: {{dataport.rid}}</p>
-                <p>Current Value: {{dataport.currentValue.value}}</p>
+                <p>Description: {{dataport.description.meta.datasource.description || 'None'}}</p>
                 <p>Data Type: {{dataport.description.format}}</p>
-                <p>Meta: {{dataport.description.meta}}</p>
-                <p>Last Modified: {{dataport.basic.modified}}</p>
+                <p>Unit: {{dataport.description.meta.datasource.unit || 'Unspecified'}}</p>
+                <p>Current Value: {{dataport.currentValue.value}}</p>
+                <p>Last Modified: {{moment.unix(dataport.basic.modified).fromNow()}}</p>
+                <p>RID: {{dataport.rid}}</p>
               </div>
             </md-grid-tile>
           </md-grid-list>
@@ -57,29 +63,26 @@
       </md-tab>
       <md-tab label="datarules">
         <md-content class="md-padding">
-          <md-list ng-repeat="datarule in device.datarule">
-            <md-list-item>
-              <div class="md-list-item-text">
-                <p>Name: {{datarule.description.name}}</p>
+          <md-grid-list md-cols="1" md-row-height="1:1" md-gutter="2px" ng-repeat="datarule in device.datarule">
+            <md-grid-tile>
+              <md-grid-tile-header>
+                <h3>{{datarule.description.name}}</h3>
+              </md-grid-tile-header>
+              <div layout="column" class="md-body-1">
+                <p>Version: {{datarule.description.meta.version || 'Unspecified'}}</p>
+                <p>Git Hash: {{datarule.description.meta.githash || 'Unspecified'}}</p>
+                <p>Last Modified: {{moment.unix(datarule.basic.modified).fromNow()}}</p>
                 <p>RID: {{datarule.rid}}</p>
               </div>
-              <md-divider></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                <p>Meta: {{datarule.description.meta}}</p>
-              </div>
-              <md-divider></md-divider>
-            </md-list-item>
-            <md-list-item>
-              <div class="md-list-item-text">
-                <p>Last Modified: {{datarule.basic.modified}}</p>
-              </div>
-              <md-divider></md-divider>
-            </md-list-item>
-          </md-list>
+            </md-grid-tile>
+          </md-grid-list>
         </md-content>
       </md-tab>
     </md-tabs>
+    <md-toolbar ng-class="[device-status, {'md-color-green': device.basic.status == 'activated', 'md-warn': device.basic.status != 'activated'}]">
+      <h2 class="md-toolbar-tools md-toolbar-tools-bottom">
+        <span class="md-flex">Status: {{device.basic.status}}</span>
+      </h2>
+    </md-toolbar>
   </section>
 </div>

@@ -1,4 +1,4 @@
-define(['angular', 'lodash'], function (angular, _) {
+define(['angular', 'lodash', 'moment'], function (angular, _, moment) {
   'use strict';
 
   /**
@@ -15,6 +15,7 @@ define(['angular', 'lodash'], function (angular, _) {
         scope: {},
         link: function postLink(scope, element, attrs) {
           ApiService.getDevices(function (devices) {
+            scope.moment = moment;
             scope.devices = devices;
           }, function (err) { console.log('getDevices failed:', err); });
         }
