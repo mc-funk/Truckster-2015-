@@ -38,6 +38,4 @@ EXPOSE 5000
 RUN adduser --disabled-password --gecos '' proj
 RUN chown proj:proj /opt/proj
 
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-
 CMD ["./venv/bin/gunicorn", "heroku:app"]
