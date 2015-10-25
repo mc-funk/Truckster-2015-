@@ -7,12 +7,28 @@ html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+.layout-row > .flex-48, .layout-row > .flex-48 {
+    flex: 0 0 48%;
+    max-width: 48%;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+
 .main {
   height: 100%;
+}
+.view-container {
+  background-color: darken($blue, 20%);
+}
+.content-container > md-content {
+  background-color: transparent;
 }
 
 .header {
   min-height: 64px;
+}
+.header md-toolbar {
+  background-color: $blue;
 }
 
 .sidebar-container {
@@ -22,18 +38,22 @@ html, body {
 .sidebar-container md-sidenav {
   min-width: 100%;
   max-width: 100%;
+  color: white;
+  background-color: $light-blue;
 }
 .sidebar md-item-content:hover {
-  background-color: $background-light;
+  background-color: lighten($light-blue, 10%);
 }
 .sidebar ng-md-icon {
-  position: relative;
-  top: 3px;
-  fill: #737373;
+  fill: white;
 }
 .sidebar a {
   text-decoration: none;
   color: inherit;
+}
+
+device-grid > div {
+  flex-wrap: wrap;
 }
 
 .devices-container {
@@ -42,8 +62,12 @@ html, body {
   margin-right: 12px;
 }
 
-.devices-container md-grid-tile-header {
+.devices-container .device-toolbar {
   background-color: $blue;
+}
+
+.devices-container md-tabs {
+  min-height: 400px !important;
 }
 
 .devices-container md-grid-tile {

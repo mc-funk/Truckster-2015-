@@ -46,7 +46,7 @@
         </md-toolbar>
       </div>
       <!-- end:header -->
-      <div layout="row" layout-fill flex>
+      <div layout="row" class="view-container" layout-fill flex>
         <!-- start:sidebar -->
         {% raw %}
         <div class="sidebar-container md-sidenav-left md-whiteframe-z2" flex="20" layout-fill ng-controller="NavCtrl">
@@ -72,7 +72,7 @@
         {% endraw %}
         <!-- end:sidebar -->
         <!-- start:content -->
-        <div layout="column" flex="80" ui-view></div>
+        <div layout="column" flex="80" ui-view class="content-container"></div>
         <!-- end:content -->
       </div>
     </div>
