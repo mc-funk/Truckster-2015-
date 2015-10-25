@@ -27,7 +27,7 @@ COPY . /opt/proj/
 
 WORKDIR /opt/proj
 
-RUN npm install -g grunt-cli
+RUN npm install -g gulp
 RUN npm install
 RUN python ./virtualenv.py venv
 RUN ./venv/bin/pip install -r requirements.txt
