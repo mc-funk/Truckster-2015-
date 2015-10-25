@@ -27,15 +27,15 @@ COPY . /opt/proj/
 
 WORKDIR /opt/proj
 
-RUN npm install -g bower grunt-cli
-RUN npm install && bower install --allow-root
+RUN npm install -g grunt-cli
+RUN npm install
 RUN python ./virtualenv.py venv
 RUN ./venv/bin/pip install -r requirements.txt
-RUN grunt build
+RUN gulp prod
 
 EXPOSE 5000
 
 RUN adduser --disabled-password --gecos '' proj
 RUN chown proj:proj /opt/proj
 
-CMD ["./venv/bin/gunicorn", "heroku:app"]
+CMD ["./venv/bin/gunicorn", "app:app"]
