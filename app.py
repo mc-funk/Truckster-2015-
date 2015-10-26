@@ -20,6 +20,10 @@ if app.debug:
 def index():
     return render_template('index.html', **get_context())
 
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('index.html', **get_context())
+
 def get_context():
     context = {}
     context['APP_CIK'] = current_app.config['APP_CIK']
