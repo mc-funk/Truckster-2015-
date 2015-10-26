@@ -2,6 +2,8 @@
 @import 'typography';
 @import '../../node_modules/angular-material/angular-material';
 @import '../../node_modules/angular-material-icons/angular-material-icons';
+@import '../../node_modules/angular-chart.js/dist/angular-chart.min';
+
 
 html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
@@ -59,7 +61,12 @@ device-grid > div {
 .devices-container {
   border-radius: 4px;
   margin-bottom: 16px;
-  margin-right: 12px;
+  margin-right: 15px;
+  margin-left: 8px;
+}
+
+.devices-container:last-child {
+  margin-right: 0px;
 }
 
 .devices-container .device-toolbar {

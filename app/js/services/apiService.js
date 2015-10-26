@@ -43,8 +43,18 @@ function ApiService($q, $http, apiConfig) {
                       function (response) { onError(response); });
   }
 
-  function getTimeSeries(dataportRid, onSuccess, onError) {
-    return null; // TODO
+  function getTimeSeries(deviceId, dataportRid, limit, since, onSuccess, onError) {
+    // Compose request
+    var auth = { 'cik': deviceId };
+    var requestObj = {
+      auth:  auth,
+      calls: [{ id: 0, procedure: 'read', arguments: [dataportRid, {limit: limit}]}]
+    };
+
+    return $http.post(apiConfig.baseUrl + '/api/onep:v1/rpc/process', requestObj)
+                .then(function (response) {
+                  onSuccess(response.data[0].result);
+                }, onError);
   }
 
   // Helper function which retrieves device metadata after getting a listing of device clients
@@ -164,6 +174,7 @@ function ApiService($q, $http, apiConfig) {
   service.rpc = rpc;
   service.getDevices = getDevices;
   service.getStats = getStats;
+  service.getTimeSeries = getTimeSeries;
 
   return service;
 

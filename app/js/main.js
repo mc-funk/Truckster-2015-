@@ -9,6 +9,8 @@ require('angular-resource');
 require('angular-animate');
 require('angular-material');
 require('angular-material-icons');
+require('angular-chart.js');
+require('chart.js');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
@@ -24,6 +26,7 @@ angular.element(document).ready(function() {
     'ngAria',
     'ngMaterial',
     'ngMdIcons',
+    'chart.js',
     'templates',
     'app.services',
     'app.controllers',

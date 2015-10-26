@@ -1,6 +1,8 @@
 {
   "name": "exohack_example",
   "author": "Exosite",
+  "repository": "git@i.exosite.com:exohack/exohack_example",
+  "license": "Proprietary",
   "keywords": [],
   "devDependencies": {
     "angular": "^1.4.7",
@@ -9,6 +11,8 @@
     "angular-touch": "^1.4.7",
     "angular-material": "^0.11.4",
     "angular-material-icons": "^0.6.0",
+    "angular-chart.js": "^0.8.5",
+    "chart.js": "^1.0.2",
     "lodash": "^3.10.1",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",
