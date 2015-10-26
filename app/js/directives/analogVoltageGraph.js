@@ -17,7 +17,11 @@ function analogVoltageGraph(ApiService) {
       dataportRid: '@'
     },
     link: function(scope, element, attrs) {
-      ApiService.getTimeSeries(scope.deviceCik, scope.dataportRid, 50, null, function (data) {
+      var dataport = scope.dataportRid;
+      if (dataport.length < 32) {
+        dataport = {'alias': dataport};
+      }
+      ApiService.getTimeSeries(scope.deviceCik, dataport, 50, null, function (data) {
         scope.moment  = moment;
         scope.series = ['Analog Voltage'];
         scope.labels = _.map(data, function (element) { return moment.unix(element[0]).fromNow(); });
