@@ -10,7 +10,7 @@ require('angular-animate');
 require('angular-material');
 require('angular-material-icons');
 require('chart.js');
-require('angular-chart.js');
+require('./vendor/angular-chart.js');
 require('./templates');
 require('./controllers/_index');
 require('./services/_index');
