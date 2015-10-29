@@ -30,6 +30,10 @@ enabled.
 2. Add the remote to your git repo
 3. `git push heroku master`
 
+## Devices
+
+Currently devices are not created for you, but the example app does have an device creator built in. The spec files for the example.exohack.io devices are under the `priv` folder in case you wish to build off of them.
+
 ## Application Structure
 
 ### AngularJS
