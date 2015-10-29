@@ -9,6 +9,8 @@ var moment = require('moment');
  */
 function ApiService($q, $http, apiConfig) {
 
+  $http.defaults.headers.common['Authorization'] = apiConfig.apiKey;
+
   var service = {};
 
   function rpc(clientId, calls) {
