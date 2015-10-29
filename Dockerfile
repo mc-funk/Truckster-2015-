@@ -23,14 +23,19 @@ RUN printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
 # Set environment variables.
 ENV HOME /root
 
-COPY . /opt/proj/
+RUN npm install -g gulp
+ADD virtualenv.py /tmp/virtualenv.py
+ADD requirements.txt /tmp/requirements.txt
+RUN cd /tmp && python /tmp/virtualenv.py venv && \
+    /tmp/venv/bin/pip install -r /tmp/requirements.txt && \
+    mkdir -p /opt/proj && cp -a /tmp/venv /opt/proj
+ADD package.json /tmp/package.json
+RUN cd /tmp && npm install && \
+    mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
 
+COPY . /opt/proj/
 WORKDIR /opt/proj
 
-RUN npm install -g gulp
-RUN npm install
-RUN python ./virtualenv.py venv
-RUN ./venv/bin/pip install -r requirements.txt
 RUN gulp prod
 
 EXPOSE 5000
