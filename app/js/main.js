@@ -13,7 +13,7 @@ require('angular-messages');
 require('chart.js');
 require('smoothie');
 require('./vendor/angular-chart.js');
-require('./templates');
+require('./templates.js');
 require('./controllers/_index');
 require('./services/_index');
 require('./directives/_index');
