@@ -1,17 +1,18 @@
 'use strict';
 
 var controllersModule = require('./_index');
+var _ = require('lodash');
 
 /**
  * @ngInject
  */
-function NavCtrl($scope, $mdSidenav) {
+function NavCtrl($stateProvider, $scope, $mdSidenav) {
 
-  $scope.pages = [
-    { name: 'Home', route: '/', icon: 'home' },
-    { name: 'Stats', route: '/stats', icon: 'whatshot' }
-  ];
+  var states = $stateProvider.get();
+  $scope.pages = _.filter(_.map(states, (state) => {
+    return { name: state.title, route: state.url, icon: state.icon };
+  }), (page) => { return !!page.name; });
 
 }
 
-controllersModule.controller('NavCtrl', ['$scope', '$mdSidenav', NavCtrl]);
+controllersModule.controller('NavCtrl', ['$state', '$scope', '$mdSidenav', NavCtrl]);
