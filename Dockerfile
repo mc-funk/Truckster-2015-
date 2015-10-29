@@ -32,11 +32,14 @@ RUN cd /tmp && python /tmp/virtualenv.py venv && \
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install && \
     mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
+ADD app /tmp/app
+ADD gulp /tmp/gulp
+ADD gulpfile.js /tmp/gulpfile.js
+RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 
-COPY . /opt/proj/
 WORKDIR /opt/proj
-
-RUN gulp prod
+ADD app.py /opt/proj/app.py
+ADD config /opt/proj/config
 
 EXPOSE 5000
 
