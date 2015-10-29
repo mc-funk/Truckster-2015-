@@ -24,11 +24,11 @@ enabled.
 - `gulp prod`
 - `venv/bin/gunicorn app:app`
 
-### Run on Heroku/Dokku
+### Run on Dokku
 
-1. Create your app on Heroku/Dokku
-2. Add the remote to your git repo
-3. `git push heroku master`
+1. Create your app on Dokku
+2. Add the remote to your git repo, i.e. `git remote add dokku@exohack.io:myapp`
+3. `git push dokku master`
 
 ## Devices
 
