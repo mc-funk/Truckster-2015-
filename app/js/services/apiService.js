@@ -74,7 +74,11 @@ function ApiService($q, $http, apiConfig) {
         response.data = _.map(zipped, function (tuple) {
           var device = tuple[0].result;
           device['client_id'] = tuple[1];
-          device.description.meta = JSON.parse(device.description.meta);
+          if (device.description.meta) {
+            device.description.meta = JSON.parse(device.description.meta);
+          } else {
+            device.description.meta = {};
+          }
           return device;
         });
         return response;
