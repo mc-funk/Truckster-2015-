@@ -1,0 +1,11 @@
+dataports:
+-   alias: raw_temp
+    format: float
+    name: Analog Temp
+    public: true
+-   alias: temp_celcius
+    format: float
+    name: Temp
+    unit: C
+scripts:
+-   file: scripts/test_script.lua
