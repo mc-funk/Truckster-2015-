@@ -7,8 +7,11 @@ function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, $urlRou
 
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
-    .accentPalette('light-blue')
+    .accentPalette('deep-orange')
     .warnPalette('red');
+  $mdThemingProvider.theme('dark', 'default')
+    .primaryPalette('pink')
+    .dark();
 
   $locationProvider.html5Mode(true);
 
@@ -32,27 +35,17 @@ function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, $urlRou
       controller: 'DemoCtrl as demo',
       templateUrl: 'demos.html',
       title: 'Demos',
-      icon: 'dashboard'
+      icon: 'apps'
+    })
+    .state('Create Device', {
+      url: '/device/create',
+      controller: 'CreateDeviceCtrl as createDevice',
+      templateUrl: 'createDevice.html',
+      title: 'Create Device',
+      icon: 'add'
     });
 
   $urlRouterProvider.otherwise('/');
-/*
-  $routeProvider
-    .when('/', {
-      templateUrl: '/views/main.html',
-      controller: 'MainCtrl',
-      controllerAs: 'main'
-    })
-    .when('/stats', {
-      templateUrl: '/views/stats.html',
-      controller: 'StatsCtrl',
-      controllerAs: 'stats'
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
-
-    */
 }
 
 module.exports = OnConfig;

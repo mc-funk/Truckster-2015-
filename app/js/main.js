@@ -9,6 +9,7 @@ require('angular-resource');
 require('angular-animate');
 require('angular-material');
 require('angular-material-icons');
+require('angular-messages');
 require('chart.js');
 require('smoothie');
 require('./vendor/angular-chart.js');
@@ -27,6 +28,7 @@ angular.element(document).ready(function() {
     'ngAria',
     'ngMaterial',
     'ngMdIcons',
+    'ngMessages',
     'chart.js',
     'templates',
     'app.services',
