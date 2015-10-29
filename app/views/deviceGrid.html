@@ -1,5 +1,16 @@
 <div flex layout-fill layout="row">
-  <section flex="48" class="devices-container md-whiteframe-z1" ng-repeat="device in devices">
+  <getting-started ng-if="devices.length == 0"></getting-started>
+  <section flex class="md-whiteframe-z1" ng-if="loading">
+    <md-toolbar class="device-toolbar md-primary" layout="row">
+      <h2 class="md-toolbar-tools">
+        <span>Welcome!</span>
+      </h2>
+    </md-toolbar>
+    <md-content class="md-padding" style="text-align: center;">
+      <p>Loading your devices..</p>
+    </md-content>
+  </section>
+  <section flex="48" class="devices-container md-whiteframe-z1" ng-repeat="device in devices" ng-if="devices.length > 0">
     <md-toolbar class="device-toolbar md-primary" layout="row">
       <h2 class="md-toolbar-tools">
         <span>{{device.description.name}}</span>

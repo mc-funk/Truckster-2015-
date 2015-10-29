@@ -13,9 +13,11 @@ function deviceGrid(ApiService) {
     templateUrl: 'deviceGrid.html',
     scope: {},
     link: function(scope, element, attrs) {
+      scope.moment = moment;
+      scope.loading = true;
       ApiService.getDevices(function (devices) {
-        scope.moment = moment;
         scope.devices = devices;
+        scope.loading = false;
       }, function (err) { console.log('getDevices failed:', err); });
     }
   };
