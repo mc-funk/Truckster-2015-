@@ -25,10 +25,7 @@ def not_found(error):
     return render_template('index.html', **get_context())
 
 def get_context():
-    context = {}
-    context['APP_CIK'] = current_app.config['APP_CIK']
-    context['API_URL'] = current_app.config['API_URL']
-    return context
+    return current_app.config
 
 
 if __name__ == '__main__':
