@@ -12,6 +12,7 @@
     "angular-material": "^0.11.4",
     "angular-material-icons": "^0.6.0",
     "chart.js": "^1.0.2",
+    "smoothie": "^1.27.0",
     "lodash": "^3.10.1",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",

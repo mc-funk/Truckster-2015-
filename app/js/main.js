@@ -10,6 +10,7 @@ require('angular-animate');
 require('angular-material');
 require('angular-material-icons');
 require('chart.js');
+require('smoothie');
 require('./vendor/angular-chart.js');
 require('./templates');
 require('./controllers/_index');
