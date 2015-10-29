@@ -40,6 +40,14 @@ angular.element(document).ready(function() {
   var app = angular.module('app', requires)
                    .constant('AppSettings', AppSettings)
                    .config(onConfig);
+  app.run(['$rootScope', ($rootScope) => {
+    $rootScope.$on('$stateChangeSuccess', (ev, toState) => {
+      var title = 'ExoHack Example';
+      if (toState && toState.title) {
+        document.title = toState.title;
+      }
+    })
+  }]);
 
   // mount on window for testing
   window.app = app;
