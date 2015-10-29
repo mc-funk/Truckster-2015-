@@ -1,0 +1,42 @@
+<section flex class="md-whiteframe-z1">
+  <md-toolbar class="device-toolbar md-primary" layout="row">
+    <h2 class="md-toolbar-tools">
+      <span>Welcome!</span>
+    </h2>
+  </md-toolbar>
+  <md-content class="md-padding">
+    <h2>Getting Started</h2>
+    <p>
+      This example web app was generated for you when you created your ExoHack app.
+      You are not required to use it of course, but it provides a good base to build on,
+      as well as some built-in Angular.js directives to handle common tasks, such as displaying
+      realtime data from a device, or displaying a grid of devices. You are free to change things
+      however you like! If you want to know more about how this example app is structured, please
+      see the README file in the root of the project.
+    </p>
+    <p>
+      Since you do not yet have any devices, we have added a simple device creator to this application,
+      which will walk you through setting up a device. Just click Devices on the sidenav!
+    </p>
+    <h2>Important Information</h2>
+    <p>
+      The example application makes use of a proxy API for OnePlatform, which supports standard RPC calls,
+      as well as realtime data via WebSockets. Look at <code>app/js/services/apiService.js</code> for examples
+      on how to interact with the API. There is also a Swagger spec file at <code>https://api.exohack.io/swagger.json</code>.
+    </p>
+    <p>
+      To make use of the WebSockets endpoint, you'll need to use the Phoenix Channels client contained in this project,
+      you can see an example of it's use in <code>app/js/directives/realtimeVoltageGraph.js</code>, and documentation on
+      it's API can be found <a href="www.phoenixframework.org/docs/channels">here</a>. Phoenix also supports other clients,
+      such as iOS and Android, if that's your thing.
+    </p>
+    <p>
+      In order to make requests to the API, you'll need to provide the Authorization header, set with the token provided to
+      your application in the <code>JWTTOKEN</code> environment variable of your container. Likewise, if you are using Phoenix,
+      you'll need to provide <code>{token: "$JWTTOKEN"}</code> to the Socket constructor. This will authenticate you to the API,
+      and automatically scope your RPC calls to the CIK for your application. You can provide another CIK in your RPC requests via
+      the <code>auth</code> key of the request object, and it will take precedence, however authentication to the API will still be
+      required via the token.
+    </p>
+  </md-content>
+</section>
