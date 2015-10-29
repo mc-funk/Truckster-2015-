@@ -37,11 +37,11 @@ function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, $urlRou
       title: 'Demos',
       icon: 'apps'
     })
-    .state('Create Device', {
+    .state('Device Creator', {
       url: '/device/create',
       controller: 'CreateDeviceCtrl as createDevice',
       templateUrl: 'createDevice.html',
-      title: 'Create Device',
+      title: 'Device Creator',
       icon: 'add'
     });
 
