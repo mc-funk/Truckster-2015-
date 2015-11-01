@@ -11,6 +11,7 @@ var streamify    = require('gulp-streamify');
 var watchify     = require('watchify');
 var browserify   = require('browserify');
 var babelify     = require('babelify');
+var babel_poly   = require('babel-polyfill');
 var uglify       = require('gulp-uglify');
 var handleErrors = require('../util/handleErrors');
 var browserSync  = require('browser-sync');
@@ -36,7 +37,7 @@ function buildScript(file) {
   }
 
   var transforms = [
-    { 'name':babelify, 'options': {}},
+    { 'name':babelify, 'options': { presets: ['es2015'] }},
     //{ 'name':debowerify, 'options': {}},
     { 'name':ngAnnotate, 'options': {}},
     { 'name':'brfs', 'options': {}},

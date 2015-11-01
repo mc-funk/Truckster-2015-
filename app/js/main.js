@@ -29,7 +29,6 @@ angular.element(document).ready(function() {
     'ngMaterial',
     'ngMdIcons',
     'ngMessages',
-    'chart.js',
     'templates',
     'app.services',
     'app.controllers',
