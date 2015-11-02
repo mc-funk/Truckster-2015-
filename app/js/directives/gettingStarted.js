@@ -1,6 +1,6 @@
 'use strict';
 
-var directivesModule = require('./_index.js');
+import directivesModule from './_index.js';
 
 /**
  * @ngInject
@@ -12,7 +12,7 @@ function gettingStarted() {
     templateUrl: 'gettingStarted.html',
     scope: {
     },
-    link: function(scope, element, attrs) {
+    link: (scope, element, attrs) => {
     }
   };
 

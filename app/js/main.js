@@ -1,6 +1,9 @@
 'use strict';
 
-var angular = require('angular');
+import angular       from 'angular';
+import {AppSettings} from './constants';
+import {OnConfig}    from './on_config';
+
 
 // angular modules
 require('angular-ui-router');
@@ -13,15 +16,15 @@ require('angular-messages');
 require('chart.js');
 require('smoothie');
 require('./vendor/angular-chart.js');
-require('./templates.js');
+require('./templates');
 require('./controllers/_index');
 require('./services/_index');
 require('./directives/_index');
 
 // create and bootstrap application
-angular.element(document).ready(function() {
+angular.element(document).ready(() => {
 
-  var requires = [
+  let requires = [
     'ui.router',
     'ngResource',
     'ngAnimate',
@@ -35,15 +38,13 @@ angular.element(document).ready(function() {
     'app.directives'
   ];
 
-  var AppSettings = require('./constants');
-  var onConfig    = require('./on_config');
-
-  var app = angular.module('app', requires)
+  let app = angular.module('app', requires)
                    .constant('AppSettings', AppSettings)
-                   .config(onConfig);
+                   .config(OnConfig);
+
   app.run(['$rootScope', ($rootScope) => {
     $rootScope.$on('$stateChangeSuccess', (ev, toState) => {
-      var title = 'ExoHack Example';
+      let title = 'ExoHack Example';
       if (toState && toState.title) {
         document.title = toState.title;
       }

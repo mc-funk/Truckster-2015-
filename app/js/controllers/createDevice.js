@@ -1,6 +1,6 @@
 'use strict';
 
-var controllersModule = require('./_index');
+import controllersModule from './_index';
 
 /**
  * @ngInject

@@ -1,8 +1,8 @@
 'use strict';
 
-var directivesModule = require('./_index.js');
-var moment = require('moment');
-var _ = require('lodash');
+import directivesModule from './_index.js';
+import moment from 'moment';
+import _ from 'lodash';
 
 /**
  * @ngInject
@@ -21,14 +21,14 @@ function analogVoltageGraph(ApiService) {
       if (dataport.length < 32) {
         dataport = {'alias': dataport};
       }
-      ApiService.getTimeSeries(scope.deviceCik, dataport, 50, null, function (data) {
+      ApiService.getTimeSeries(scope.deviceCik, dataport, 50, null, (data) => {
         scope.moment  = moment;
         scope.series = ['Analog Voltage'];
-        scope.labels = _.map(data, function (element) { return moment.unix(element[0]).fromNow(); });
+        scope.labels = _.map(data, (element) => { return moment.unix(element[0]).fromNow(); });
         scope.data = [
-          _.map(data, function (element) { return element[1]; })
+          _.map(data, (element) => { return element[1]; })
         ];
-      }, function (err) { console.log('getTimeSeries failed:', err); });
+      }, (err) => { console.log('getTimeSeries failed:', err); });
     }
   };
 

@@ -1,7 +1,7 @@
 'use strict';
 
-var directivesModule = require('./_index.js');
-var _ = require('lodash');
+import directivesModule from './_index.js';
+import _ from 'lodash';
 
 /**
  * @ngInject
@@ -12,7 +12,7 @@ function deviceCreator(ApiService, ngMessages) {
     restrict: 'E',
     templateUrl: 'deviceCreator.html',
     scope: {},
-    link: function(scope, element, attrs) {
+    link: (scope, element, attrs) => {
 
       scope.addDataPort = () => {
         scope.dataports.push({

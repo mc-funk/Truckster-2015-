@@ -1,8 +1,8 @@
 'use strict';
 
-var angular = require('angular');
-var bulk = require('bulk-require');
+import angular from 'angular';
+let bulk = require('bulk-require');
 
-module.exports = angular.module('app.controllers', ['ngMaterial', 'ngMdIcons']);
+export default angular.module('app.controllers', ['ngMaterial', 'ngMdIcons']);
 
 bulk(__dirname, ['./**/!(*_index|*.spec).js']);

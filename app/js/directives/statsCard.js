@@ -1,6 +1,6 @@
 'use strict';
 
-var directivesModule = require('./_index.js');
+import directivesModule from './_index.js';
 
 /**
  * @ngInject
@@ -11,10 +11,10 @@ function statsCard(ApiService) {
     restrict: 'E',
     templateUrl: 'statsCard.html',
     scope: {},
-    link: function(scope, element, attrs) {
-      ApiService.getStats(function (stats) {
+    link: (scope, element, attrs) => {
+      ApiService.getStats((stats) => {
         scope.stats = stats.data;
-      }, function (err) { console.log('getStats failed:', err); });
+      }, (err) => { console.log('getStats failed:', err); });
     }
   };
 

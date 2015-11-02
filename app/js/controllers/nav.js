@@ -1,7 +1,7 @@
 'use strict';
 
-var controllersModule = require('./_index');
-var _ = require('lodash');
+import controllersModule from './_index';
+import _ from 'lodash';
 
 /**
  * @ngInject

@@ -1,6 +1,6 @@
 'use strict';
 
-var controllersModule = require('./_index');
+import controllersModule from './_index';
 
 /**
  * @ngInject
@@ -18,7 +18,7 @@ function MainCtrl($scope, $mdToast, $document) {
   $scope.getToastPosition = function () {
     sanitizePosition();
     return Object.keys($scope.toastPosition)
-      .filter(function (pos) { return $scope.toastPosition[pos]; })
+      .filter((pos) => { return $scope.toastPosition[pos]; })
       .join(' ');
   };
   $scope.showToast = function(template) {

@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
+export function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, $urlRouterProvider) {
 
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
@@ -47,5 +47,3 @@ function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, $urlRou
 
   $urlRouterProvider.otherwise('/');
 }
-
-module.exports = OnConfig;

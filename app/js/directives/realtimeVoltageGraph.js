@@ -1,8 +1,8 @@
 'use strict';
 
-var directivesModule = require('./_index.js');
-var moment = require('moment');
-var _ = require('lodash');
+import directivesModule from './_index.js';
+import moment from 'moment';
+import _ from 'lodash';
 
 import {SmoothieChart, TimeSeries} from 'smoothie';
 import {Socket, LongPoll} from '../vendor/phoenix';
@@ -14,9 +14,9 @@ function realtimeVoltageGraph(AppSettings) {
 
   // Establish websockets connection
   function init(cik, callback) {
-    var socket = new Socket(AppSettings.webSocketsUrl, {
-      logger: function (kind, msg, data) { /*console.log('socket', kind, msg, data);*/ },
-      params: {token: AppSettings.apiKey, domain: window.location.host},
+    let socket = new Socket(AppSettings.webSocketsUrl, {
+      logger: (kind, msg, data) => { /*console.log('socket', kind, msg, data);*/ },
+      params: {token: AppSettings.apiKey, domain: window.location.origin},
       transport: window.WebSocket
     });
 
@@ -25,7 +25,7 @@ function realtimeVoltageGraph(AppSettings) {
     socket.onError(() => { /* console.log('socket:error'); */});
     socket.onClose(() => { /* console.log('socket:close'); */});
 
-    var channel = socket.channel('rooms:device:' + cik, {});
+    let channel = socket.channel('rooms:device:' + cik, {});
     channel.join()
            .receive('ignore', () => { /*console.log('channel:ignore', 'auth error');*/ })
            .receive('ok',     () => { console.log('channel:join', 'ok'); callback(channel); });
@@ -33,11 +33,11 @@ function realtimeVoltageGraph(AppSettings) {
     channel.onClose(()    => { /*console.log('channel:close');*/ });
   }
 
-  var datapoints = [];
-  var labels     = [];
+  let datapoints = [];
+  let labels     = [];
 
-  var connected = false;
-  var last = 0;
+  let connected = false;
+  let last = 0;
 
   return {
     restrict: 'E',
@@ -49,8 +49,8 @@ function realtimeVoltageGraph(AppSettings) {
     },
     link: function(scope, element, attrs) {
       // Initialize chart
-      var $chart   = element.find('canvas')[0];
-      var chart    = new SmoothieChart({
+      let $chart   = element.find('canvas')[0];
+      let chart    = new SmoothieChart({
         millisPerPixel: 100, minValueScale: 0,
         grid: {
           millisPerLine: 5000,
@@ -60,8 +60,8 @@ function realtimeVoltageGraph(AppSettings) {
         },
       });
       chart.streamTo($chart);
-      var line1 = new TimeSeries();
-      var line2 = new TimeSeries();
+      let line1 = new TimeSeries();
+      let line2 = new TimeSeries();
       chart.addTimeSeries(line1, { strokeStyle: 'rgba(220, 220, 220, 1)', fillStyle: 'rgba(220, 220, 220, 0.75)', lineWidth: 3});
       chart.addTimeSeries(line2, { strokeStyle: 'rgba(151, 187, 205, 1)', fillStyle: 'rgba(151, 187, 205, 0.75)', lineWidth: 3});
 
@@ -69,13 +69,13 @@ function realtimeVoltageGraph(AppSettings) {
       line2.append(new Date().getTime(), 0);
 
       // Parse dataport for aliases
-      var dataport = scope.dataportRid;
+      let dataport = scope.dataportRid;
       if (dataport.length < 32) {
         dataport = {'alias': dataport};
       }
       // Connect to websockets endpoint
       if (!connected) {
-        var connection = init(scope.deviceCik, (channel) => {
+        let connection = init(scope.deviceCik, (channel) => {
           connected = true;
           // Handle authentication
           channel.on('auth:ready', () => {
