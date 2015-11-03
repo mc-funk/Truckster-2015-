@@ -10,11 +10,7 @@
 ### Build and Run (Development)
 
 1. Clone this repository
-2. `npm install -g gulp` (only if you don't have Bower installed)
-3. `npm install`
-4. `python virtualenv.py venv`
-5. `venv/bin/pip install -r requirements.txt`
-6. `gulp dev`
+2. `./init.sh`
 
 This will set up the environment and run the app at `localhost:3000` with BrowserSync
 enabled.
