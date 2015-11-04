@@ -29,7 +29,7 @@ function ApiService($q, $http, apiConfig) {
     if (clientId == null) {
       requestObj = { calls: calls };
     } else {
-      requestObj = { auth: { cik: apiConfig.cik, client_id: clientId }, calls: calls };
+      requestObj = { auth: { client_id: clientId }, calls: calls };
     }
 
     return $http.post(apiConfig.baseUrl + '/api/onep:v1/rpc/process', requestObj);
@@ -91,7 +91,7 @@ function ApiService($q, $http, apiConfig) {
       var calls = _.map(response.data, (device) => {
         var call = {
           procedure: 'listing',
-          arguments: [{'alias': ''}, ['dataport', 'datarule', 'dispatch', 'client'], {'activated': true}]
+          arguments: [{'alias': ''}, ['dataport', 'datarule', 'dispatch', 'client'], {}]
         };
         return rpc(device['client_id'], [call])
                 .then((r) => {
@@ -113,7 +113,11 @@ function ApiService($q, $http, apiConfig) {
       var info = resourceTuple[1][0].result;
       var read = resourceTuple[1][1].result;
       info['rid'] = rid;
-      info.description.meta = JSON.parse(info.description.meta);
+      if (info.description.meta) {
+        info.description.meta = JSON.parse(info.description.meta);
+      } else {
+        info.description.meta = {};
+      }
       if (read.length > 0) {
         info['currentValue'] = {
           timestamp: read[0][0],
