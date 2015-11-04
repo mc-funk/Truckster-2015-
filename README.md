@@ -10,7 +10,7 @@
 ### Build and Run (Development)
 
 1. Clone this repository
-2. `./init.sh`
+2. `./init.sh <your app name>`
 
 This will set up the environment and run the app at `localhost:3000` with BrowserSync
 enabled.
