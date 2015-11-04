@@ -77,17 +77,34 @@ gulp_dev() {
   fi
 }
 
+read_env() {
+  echo "Fetching your app token from dokku..."
+  OIFS="$IFS"
+  IFS=$'\n'
+  env=$(ssh dokku@exohack.io -- config $1)
+  read -rd '' -a config_vars <<< "$env"
+  jwt_token=$(echo ${config_vars[5]} | awk '{print $2}')
+  sed -i '' "s/os\.getenv('JWTTOKEN', '.*')/os.\getenv('JWTTOKEN', '$jwt_token')/g" config/production.py
+  echo "Token set!"
+}
+
 case "$1" in
   help)
     echo "This script sets up your environment for working with this application."
     echo "It installs gulp, a python virtualenv, all dependencies, and boots the app for the first time."
     ;;
   *)
-    echo "Setting up your environment..."
-    install_gulp
-    setup_virtualenv
-    init_virtualenv
-    install_npm_deps
-    gulp_dev
+    if [ -n "$1" ]; then
+      echo "Setting up your environment..."
+      install_gulp
+      setup_virtualenv
+      init_virtualenv
+      install_npm_deps
+      read_env $1
+      gulp_dev
+    else
+      echo "You need to provide your app name as an argument, i.e. './init.sh my_app'"
+      exit 1
+    fi
     ;;
 esac
