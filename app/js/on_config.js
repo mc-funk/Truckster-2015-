@@ -36,14 +36,7 @@ export function OnConfig($mdThemingProvider, $stateProvider, $locationProvider, 
       templateUrl: 'demos.html',
       title: 'Demos',
       icon: 'apps'
-    })
-    .state('Device Creator', {
-      url: '/device/create',
-      controller: 'CreateDeviceCtrl as createDevice',
-      templateUrl: 'createDevice.html',
-      title: 'Device Creator',
-      icon: 'add'
-    });
+    });  
 
   $urlRouterProvider.otherwise('/');
 }
