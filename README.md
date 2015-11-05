@@ -4,6 +4,7 @@
 
 - Python
 - Node
+- XCode (Mac only)
 
 ## Getting Started
 
