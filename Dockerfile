@@ -25,10 +25,10 @@ RUN cd /tmp && python /tmp/virtualenv.py venv && \
     /tmp/venv/bin/pip install -r /tmp/requirements.txt && \
     mkdir -p /opt/proj && cp -a /tmp/venv /opt/proj
 ADD package.json /tmp/package.json
-RUN cd /tmp && npm install && \
-    mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
-ADD gulp /tmp/gulp
-ADD gulpfile.js /tmp/gulpfile.js
+#RUN cd /tmp && npm install && \
+#    mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
+#ADD gulp /tmp/gulp
+#ADD gulpfile.js /tmp/gulpfile.js
 ADD app /opt/app
 
 #RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
