@@ -1,3 +1,41 @@
 {% extends "truckster_web/templates/base.html" %}
 {% block content %}
 {% endblock %}
+
+<!-- Latest compiled and minified CSS -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="truckster-style.css" href="">
+  </head>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-8-md map"></div>
+    <div class="col-4-md rsidebar sidebar">
+      <div class="featured-truck"></div>
+      <div class="about">
+        Love food trucks? Now you can stalk them -- without all the work.
+        Truckster will notify you when your favorite food trucks are open
+        near the places where you work and play. <a href="#">Sign up today!</a>
+      </div>
+      <div class="search-box">
+        <div class="loc-search"></div>
+        <div class="truck-search"></div>
+        <div class="browse-by-truck">
+            <a href="#">Browse by truck</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
