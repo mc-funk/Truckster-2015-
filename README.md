@@ -4,7 +4,7 @@
 
 - Python
 - Node
-- XCode (Mac only)
+- XCode or a C++ compiler and `npm install -g node-gyp`
 
 ## Getting Started
 
