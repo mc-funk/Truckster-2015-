@@ -3,7 +3,7 @@ import sys
 from flask import Flask, render_template, current_app
 import jinja2
 app = Flask(__name__,
-            # template_folder='truckster_web/templates',
+            template_folder='truckster_web/templates',
             static_folder='build',
             static_path=''
 )
