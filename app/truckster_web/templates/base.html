@@ -3,17 +3,18 @@
     <link href="/static/fonts/font-awesome.min.css" rel="stylesheet">
     <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/static/css/truckster-style.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
       <title> {{ title }} - Truckster </title>
       {% else %}Truckster</title>
     {% endif %}
-  
+
     {% block head %}{% endblock %}
   </head>
   <body>
     <!-- Universal header -->
-    <nav class="navbar navbar-inverse navbar-fixed-top"> 
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <!-- Responsive collapsible nav -->
@@ -39,7 +40,7 @@
       </div>
     </nav>
 
-    <!-- Flash messages 
+    <!-- Flash messages
     <div class="page-header flash-messages">
     {% with messages = get_flashed_messages() %}
       {% if messages %}
