@@ -31,7 +31,7 @@ if app.debug:
 
 @app.route('/')
 def index():
-    return render_template('index.html' if BYPASSING_ANGULAR_FRONT_END else 'app/index.html', **get_context())
+    return render_template('app/index.html' if BYPASSING_ANGULAR_FRONT_END else 'index.html', **get_context())
 
 @app.route('/truckster')
 def truckster():
