@@ -83,7 +83,9 @@ read_env() {
   IFS=$'\n'
   env=$(ssh dokku@exohack.io -- config $1)
   read -rd '' -a config_vars <<< "$env"
+  app_cik=$(echo ${config_vars[1]} | awk '{print $2}')
   jwt_token=$(echo ${config_vars[5]} | awk '{print $2}')
+  sed -i '' "s/os\.getenv('APP_ROOT', '.*')/os.\getenv('APP_ROOT', '$app_cik')/g" config/production.py
   sed -i '' "s/os\.getenv('JWTTOKEN', '.*')/os.\getenv('JWTTOKEN', '$jwt_token')/g" config/production.py
   echo "Token set!"
 }
