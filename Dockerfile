@@ -16,11 +16,6 @@ RUN \
 ADD docker/.bashrc /root/.bashrc
 ADD docker/.gitconfig /root/.gitconfig
 
-RUN wget http://nodejs.org/dist/v4.2.1/node-v4.2.1-linux-x64.tar.gz && \
-    tar -C /usr/local --strip-components 1 -xzf node-v4.2.1-linux-x64.tar.gz && \
-    printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc && \
-    npm install -g gulp
-
 # Set environment variables.
 ENV HOME /root
 
@@ -34,8 +29,9 @@ RUN cd /tmp && npm install && \
     mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
 ADD gulp /tmp/gulp
 ADD gulpfile.js /tmp/gulpfile.js
-ADD app /tmp/app
-RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
+ADD app /opt/app
+
+#RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 
 WORKDIR /opt/proj
 ADD app.py /opt/proj/app.py
