@@ -3,7 +3,7 @@ import sys
 from flask import Flask, render_template, current_app
 import jinja2
 app = Flask(__name__,
-            template_folder='truckster_web/templates',
+            # template_folder='truckster_web/templates',
             static_folder='build',
             static_path=''
 )
@@ -31,7 +31,7 @@ if app.debug:
 
 @app.route('/')
 def index():
-    return render_template('index.html', **get_context())
+    return render_template('index.html' if BYPASSING_ANGULAR_FRONT_END else 'app/index.html', **get_context())
 
 @app.route('/truckster')
 def truckster():
