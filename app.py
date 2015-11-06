@@ -39,11 +39,11 @@ def truckster():
 
 @app.route('/trucks')
 def trucks():
-    return render_template('truckster_web/templates/index.html', **get_context())
+    return render_template('truckster_web/templates/trucks.html', **get_context())
 
 @app.route('/signin')
 def signin():
-    return render_template('truckster_web/templates/index.html', **get_context())
+    return render_template('truckster_web/templates/signin.html', **get_context())
 
 @app.errorhandler(404)
 def not_found(error):
