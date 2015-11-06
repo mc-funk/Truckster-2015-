@@ -29,7 +29,7 @@ ADD package.json /tmp/package.json
 #    mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
 #ADD gulp /tmp/gulp
 #ADD gulpfile.js /tmp/gulpfile.js
-ADD app /opt/app
+ADD app /opt/proj/app
 
 #RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 
