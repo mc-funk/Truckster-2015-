@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+<!-- BLOCK HEAD -->
+{% block head %}
+    <style type="text/css">
+    body {
+  		padding-top: 40px;
+  		padding-bottom: 40px;
+  		background-color: #eee;
+	}
+
+    .form-signin {
+	  max-width: 330px;
+	  padding: 15px;
+	  margin: 0 auto;
+	}
+    </style>
+{% endblock %}
+<!-- END BLOCK HEAD -->
+
+
+<!-- BLOCK CONTENT -->
+{% block content %}
+<div class="container">
+
+	<!-- Login Form -->
+	<form class="form-signin" action="" method="post" name="login">
+	
+	<!-- Flash messages -->
+    <div class="page-header flash-messages">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-info" role="alert">
+          <ul class="flash-messages">
+          {% for message in messages %}
+            <li> {{ message }} </li>
+          {% endfor %}
+          </ul>
+      {% endif %}
+    {% endwith %}
+    </div>
+
+		<h2 class="form-signin-heading"> Login </h2>
+		{{ form.hidden_tag() }}
+		<p> 
+			Email address: {{ form.email(size = 40) }}
+			{% for error in form.email.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<p>
+			Password: {{ form.password(size = 40) }}
+			{% for error in form.password.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}
+		</p>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		
+	</form>
+	</div> <!-- End container -->
+
+	<!-- Activate JQuery & Bootstrap -->
+   <!--  <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+   <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+{% endblock %}
