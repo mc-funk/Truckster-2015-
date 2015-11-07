@@ -22,7 +22,7 @@ app.register_blueprint(root_bp, url_prefix='/')
 
 truckster_bp = Blueprint(   'truckster_bp', 
                             __name__,
-                            static_url_path='/',
+                            static_url_path='/truckster',
                             static_folder='truckster'
 )
 app.register_blueprint(truckster_bp, url_prefix='/truckster')
@@ -37,7 +37,7 @@ if app.debug:
 def index():
     return render_template('index.html', **get_context())
 
-@truckster_bp.route('/truckster')
+@truckster_bp.route('/')
 def truckster():
     return render_template('truckster_index.html', **get_context())
 
