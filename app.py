@@ -3,7 +3,7 @@ import sys
 from flask import Flask, render_template, current_app, Blueprint
 import jinja2
 app = Flask(__name__,
-            static_folder='build',
+            # static_folder='build',
             static_path=''
 )
 
@@ -13,12 +13,19 @@ my_loader = jinja2.ChoiceLoader([
     ])
 app.jinja_loader = my_loader
 
+root_bp = Blueprint(   '', 
+                        __name__,
+                        static_url_path='/',
+                        static_folder='app'
+)
+app.register_blueprint(root_bp, url_prefix='/')
+
 truckster_bp = Blueprint(   'truckster', 
                             __name__,
                             static_url_path='/truckster',
                             static_folder='truckster'
 )
-app.register_blueprint(truckster_bp)
+app.register_blueprint(truckster_bp, url_prefix='/truckster')
 
 
 # Load configuration
