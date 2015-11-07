@@ -3,7 +3,6 @@
 <!-- <head meta name="viewport" content="width=device-width, initial-scale=1">-->
 
     <link href="/truckster/truckster/styles/leaflet.css" rel="stylesheet">
-    <link href="/truckster/truckster/styles/truckster-style.css" rel="stylesheet">
 <style>
   #map { height: 400px; padding-left: 20px; border: 1px solid #000000; }
 </style>
@@ -11,18 +10,22 @@
     <div class="col-md-8" id="map">
     </div>
     <div class="col-md-4 rsidebar sidebar">
-      <div class="featured-truck"></div>
-      <div class="about">
+      <div class="sidebar-box featured-truck">
+        <h4>Featured Truck</h4>
+        <img src="/truckster/truckster/assets/WorldStreetKitchentruck_150h.png">
+        <p>World Street Kitchen! It has tasty foods.</p>
+      </div>
+      <div class="sidebar-box about">
         Love food trucks? Now you can stalk them -- without all the work.
         Truckster will notify you when your favorite food trucks are open
         near the places where you work and play. <a href="#">Sign up today!</a>
       </div>
-      <div class="search-box">
-        <div class="loc-search"></div>
-        <div class="truck-search"></div>
-        <div class="browse-by-truck">
-            <a href="#">Browse by truck</a>
-        </div>
+      <div class="sidebar-box search-box">
+        <p class="truck-search-zip"><input type="text" placeholder="Search by zip code"><button name="by-zip" type="submit" class="btn btn-success btn-sm">Go</button></input></p>
+        <p class="truck-search-name"><input type="text" placeholder="Search by truck name"><button name="by-name" type="submit" class="btn btn-success btn-sm">Go</button></input></p>
+        <p class="browse-by-truck">
+            <a href="#"><button class="btn btn-primary btn-sm">Browse by truck</button></a>
+        </p>
       </div>
     </div>
   </div>
@@ -53,7 +56,7 @@
       }
 
     function add_food_trucks_to_map() {
-      $.each(AllTruckData.responseJSON, function(idx, val) { 
+      $.each(AllTruckData.responseJSON, function(idx, val) {
         console.log("RID: ", idx, "Food Truck: ", val['name'])
         var circle = L.circle(  [ val['status']['gps']['lat'],
                                   val['status']['gps']['long']
@@ -66,7 +69,7 @@
 
         popupContent = '<p>' + val['name'] +'<br />'+ '<button type="button">Stalk this Truck!</button></p>';
         circle.bindPopup(popupContent);
-          // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>'); 
+          // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>');
       });
     }
 
@@ -75,8 +78,8 @@
 
 
     // console.log(AllTruckData.responseJSON)
-    // $.each(AllTruckData.responseJSON, function(idx, val) { 
-    //   console.log("RID: ", idx, "Food Truck: ", val['name']) 
+    // $.each(AllTruckData.responseJSON, function(idx, val) {
+    //   console.log("RID: ", idx, "Food Truck: ", val['name'])
     // });
 
 
