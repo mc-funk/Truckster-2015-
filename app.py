@@ -22,7 +22,7 @@ root_bp = Blueprint(   'root_bp',
 
 truckster_bp = Blueprint(   'truckster_bp', 
                             __name__,
-                            static_url_path='/assets',
+                            # static_url_path='/assets',
                             static_folder='truckster',
                             template_folder='truckster'
 )
