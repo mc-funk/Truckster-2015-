@@ -33,11 +33,11 @@ app.config.from_object('config.production')
 if app.debug:
     app.config.from_object('config.local')
 
-@app.route('/')
+@root_bp.route('/')
 def index():
     return render_template('index.html', **get_context())
 
-@app.route('/truckster')
+@truckster_bp.route('/truckster')
 def truckster():
     return render_template('truckster_index.html', **get_context())
 
