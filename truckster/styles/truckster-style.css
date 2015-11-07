@@ -9,14 +9,23 @@
 }
 
 .sidebar-box {
-  border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
+}
+
+.rsidebar {
+  height: 500px;
+  padding-left: 0;
   background-color: #C9BDAB;
 }
 
 .about {
   font-weight: bold;
+  background-color: #f3e4ce;
+}
+
+.search-box {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .addtruck {
