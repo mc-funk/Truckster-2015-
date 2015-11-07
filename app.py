@@ -33,6 +33,8 @@ app.config.from_object('config.production')
 if app.debug:
     app.config.from_object('config.local')
 
+print("WILL :: ", dir(app), " :\n: ", app)
+
 @root_bp.route('/')
 def index():
     return render_template('index.html', **get_context())
@@ -41,17 +43,17 @@ def index():
 def truckster():
     return render_template('truckster_index.html', **get_context())
 
-@app.route('/trucks')
-def trucks():
-    return render_template('trucks.html', **get_context())
+# @app.route('/trucks')
+# def trucks():
+#     return render_template('trucks.html', **get_context())
 
-@app.route('/signin')
-def signin():
-    return render_template('signin.html', **get_context())
+# @app.route('/signin')
+# def signin():
+#     return render_template('signin.html', **get_context())
 
-@app.route('/profile')
-def profile():
-    return render_template('profile.html', **get_context())
+# @app.route('/profile')
+# def profile():
+#     return render_template('profile.html', **get_context())
 
 # @app.errorhandler(404)
 # def not_found(error):
