@@ -38,6 +38,7 @@ ADD app /tmp/app
 RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 
 WORKDIR /opt/proj
+ADD truckster /opt/proj/truckster
 ADD app.py /opt/proj/app.py
 ADD config /opt/proj/config
 

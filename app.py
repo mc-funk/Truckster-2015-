@@ -4,28 +4,28 @@ from flask import Flask, render_template, current_app, Blueprint
 import jinja2
 app = Flask(__name__,
             # static_folder='build',
-            static_path=''
+            # static_path=''
 )
 
-my_loader = jinja2.ChoiceLoader([
-        app.jinja_loader,
-        jinja2.FileSystemLoader(['truckster','build'])
-    ])
-app.jinja_loader = my_loader
+# my_loader = jinja2.ChoiceLoader([
+#         app.jinja_loader,
+#         jinja2.FileSystemLoader(['truckster','build'])
+#     ])
+# app.jinja_loader = my_loader
 
 root_bp = Blueprint(   'root_bp', 
                         __name__,
-                        static_url_path='/',
-                        static_folder='build'
+                        static_url_path='',
+                        static_folder='build',
+                        template_folder='build'
 )
-app.register_blueprint(root_bp, url_prefix='/')
 
 truckster_bp = Blueprint(   'truckster_bp', 
                             __name__,
-                            static_url_path='/truckster',
-                            static_folder='truckster'
+                            static_url_path='/assets',
+                            static_folder='truckster',
+                            template_folder='truckster'
 )
-app.register_blueprint(truckster_bp, url_prefix='/truckster')
 
 
 # Load configuration
@@ -33,35 +33,43 @@ app.config.from_object('config.production')
 if app.debug:
     app.config.from_object('config.local')
 
-print("WILL :: ", dir(app), " :\n: ", app)
+print("URL_MAP :: ", app.url_map)
 
-@root_bp.route('/')
+# import sys
+# sys.exit()
+
+@root_bp.route('/', methods=['GET'])
 def index():
+    print("Hit root")
     return render_template('index.html', **get_context())
 
-@truckster_bp.route('/')
+@truckster_bp.route('/', methods=['GET'])
 def truckster():
+    print("Hit truckster ")
     return render_template('truckster_index.html', **get_context())
 
-# @app.route('/trucks')
-# def trucks():
-#     return render_template('trucks.html', **get_context())
+@truckster_bp.route('/trucks')
+def trucks():
+    return render_template('trucks.html', **get_context())
 
-# @app.route('/signin')
-# def signin():
-#     return render_template('signin.html', **get_context())
+@truckster_bp.route('/signin')
+def signin():
+    return render_template('signin.html', **get_context())
 
-# @app.route('/profile')
-# def profile():
-#     return render_template('profile.html', **get_context())
+@truckster_bp.route('/profile')
+def profile():
+    return render_template('profile.html', **get_context())
 
-# @app.errorhandler(404)
-# def not_found(error):
-#     return render_template('index.html', **get_context())
+@truckster_bp.errorhandler(404)
+def not_found(error):
+    return render_template('index.html', **get_context())
 
 def get_context():
     return current_app.config
 
+
+app.register_blueprint(root_bp)
+app.register_blueprint(truckster_bp, url_prefix='/truckster')
 
 if __name__ == '__main__':
     if 'debug' in sys.argv:

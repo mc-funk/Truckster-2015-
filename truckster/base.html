@@ -36,13 +36,13 @@
           <ul class="nav navbar-nav navbar-left">
             {# {% if g.user.is_authenticated() %} #}
             <!-- <li><a href="/index">Home</a></li> -->
-            <li><a href="{{ url_for('truckster') }}">Home</a></li>
-            <li><a href="{{ url_for('trucks') }}">Food Trucks</a></li>
+            <li><a href="{{ url_for('.truckster') }}">Home</a></li>
+            <li><a href="{{ url_for('.trucks') }}">Food Trucks</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right"
-            <li class=><a href="{{ url_for('signin') }}">Log In</a></li>
-            <li><a href="{{ url_for('signin') }}">Sign Up</a></li>
-            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li class=><a href="{{ url_for('.signin') }}">Log In</a></li>
+            <li><a href="{{ url_for('.signin') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('.profile') }}">Profile</a></li>
             {# {% endif %} #}
           </ul>
         </div>
