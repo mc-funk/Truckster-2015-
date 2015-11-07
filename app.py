@@ -9,7 +9,7 @@ app = Flask(__name__,
 
 my_loader = jinja2.ChoiceLoader([
         app.jinja_loader,
-        jinja2.FileSystemLoader(['build','truckster'])
+        jinja2.FileSystemLoader(['truckster','build'])
     ])
 app.jinja_loader = my_loader
 
