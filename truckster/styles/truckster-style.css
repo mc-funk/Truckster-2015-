@@ -1,7 +1,29 @@
-.a {
- background-color: #0014bc;
+.header {
+  background-color: #B83C30;
 }
 
-.body {
-  margin-top: 50px;
+.navbar {
+  background-color: #4A4844;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.sidebar-box {
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #C9BDAB;
+}
+
+.about {
+  font-weight: bold;
+}
+
+.addtruck {
+  padding: 5px;
+  margin-left: auto;
+  magin-right: auto;
+}
+#map {
+ height: 500px;
 }
