@@ -35,7 +35,6 @@ RUN cd /tmp && npm install && \
 ADD gulp /tmp/gulp
 ADD gulpfile.js /tmp/gulpfile.js
 ADD app /tmp/app
-ADD truckster /tmp/proj/app
 RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 
 WORKDIR /opt/proj
