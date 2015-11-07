@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import Flask, render_template, current_app
+from flask import Flask, render_template, current_app, Blueprint
 import jinja2
 app = Flask(__name__,
             static_folder='build',
@@ -9,9 +9,17 @@ app = Flask(__name__,
 
 my_loader = jinja2.ChoiceLoader([
         app.jinja_loader,
-        jinja2.FileSystemLoader(['build','app'])
+        jinja2.FileSystemLoader(['build','truckster'])
     ])
 app.jinja_loader = my_loader
+
+truckster_bp = Blueprint(   'truckster', 
+                            __name__,
+                            static_url_path='/truckster',
+                            static_folder='truckster'
+)
+app.register_blueprint(truckster_bp)
+
 
 # Load configuration
 app.config.from_object('config.production')
