@@ -16,7 +16,7 @@ app.jinja_loader = my_loader
 root_bp = Blueprint(   '', 
                         __name__,
                         static_url_path='/',
-                        static_folder='app'
+                        static_folder='build'
 )
 app.register_blueprint(root_bp, url_prefix='/')
 
