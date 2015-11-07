@@ -2,9 +2,7 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >
     <link href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <link href="/styles/truckster-style.css" rel="stylesheet">
-
+    <link href="/truckster/truckster/styles/truckster-style.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
       <title> {{ title }} - Truckster </title>
@@ -13,10 +11,10 @@
 
     {% block head %}{% endblock %}
   </head>
-  <body style="margin-top: 60px;">
+  <body>
     <!-- Universal header -->
-    <div class="container-fluid">
-      <img src="#" alt="Logo"> TRUCKSTER: Follow that truck!
+    <div class="container-fluid header">
+      <img src="/truckster/truckster/assets/truckster_header_v3.png" alt="Logo">
     </div>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -28,7 +26,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/devices">UTC</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -38,8 +35,8 @@
             <li><a href="{{ url_for('.truckster') }}">Home</a></li>
             <li><a href="{{ url_for('.trucks') }}">Food Trucks</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right"
-            <li class=><a href="{{ url_for('.signin') }}">Log In</a></li>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('.signin') }}">Log In</a></li>
             <li><a href="{{ url_for('.signin') }}">Sign Up</a></li>
             <li><a href="{{ url_for('.profile') }}">Profile</a></li>
             {# {% endif %} #}
@@ -69,4 +66,3 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script src="/scripts/truckster-scripts.js"></script>

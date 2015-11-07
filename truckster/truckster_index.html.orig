@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- <head meta name="viewport" content="width=device-width, initial-scale=1">-->
+
+<<<<<<< HEAD
+<style>
+  #map { height: 400px; border: 1px solid #000000; }
+</style>
+<div class="container-fluid">
+=======
+  <link href="/truckster/truckster/styles/leaflet.css" rel="stylesheet">
+>>>>>>> michellestyling
+  <div class="row">
+    <div class="col-md-8" id="map"></div>
+    <div class="col-md-4 rsidebar sidebar">
+      <div class="sidebar-box featured-truck">
+        <h4>Featured Truck</h4>
+        <img src="/truckster/truckster/assets/WorldStreetKitchentruck_150h.png">
+        <p>World Street Kitchen! It has tasty foods.</p>
+      </div>
+      <div class="sidebar-box about">
+        Love food trucks? Now you can stalk them -- without all the work.
+        Truckster will notify you when your favorite food trucks are open
+        near the places where you work and play. <a href="#">Sign up today!</a>
+      </div>
+      <div class="sidebar-box search-box">
+        <p class="truck-search-zip"><input type="text" placeholder="Search by zip code"><button name="by-zip" type="submit" class="btn btn-success btn-sm">Go</button></input></p>
+        <p class="truck-search-name"><input type="text" placeholder="Search by truck name"><button name="by-name" type="submit" class="btn btn-success btn-sm">Go</button></input></p>
+        <p class="browse-by-truck">
+            <a href="#"><button class="btn btn-primary btn-sm">Browse by truck</button></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<<<<<<< HEAD
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<script src="http://labs.easyblog.it/maps/leaflet-search/dist/leaflet-search.src.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+    console.log("document ready");
+    function initmap() {
+	    // set up the map
+	    map = new L.Map('map');
+
+	    // create the tile layer with correct attribution
+	    var osmUrl='http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+	    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+	    var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 15, attribution: osmAttrib});
+
+	    // start the map in South-East England
+	    map.setView([44.9778,-93.2650],12);
+	    map.addLayer(osm);
+      map.addControl( new L.Control.Search({
+  			url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
+  			jsonpParam: 'json_callback',
+  			propertyName: 'display_name',
+  			propertyLoc: ['lat','lon'],
+  			circleLocation: false,
+  			markerLocation: false,
+  			autoType: false,
+  			autoCollapse: true,
+  			minLength: 2,
+  			zoom:10
+  		}) );
+
+    }
+
+
+
+             initmap();
+	/*	var zoomLevel = 5;
+		var carrierHomeGps = [41.715317,-72.799067];
+		var map = L.map('map');
+		var DeviceList = {};
+
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+    map.setView(carrierHomeGps, zoomLevel);
+
+		/*{% for device in device_objects %}
+			var circle = L.circle(	[{{ device.description.meta.location.gps.lat | safe }},
+									{{ device.description.meta.location.gps.long | safe }}],
+									 500, {
+				color: 'blue',
+				fillColor: '#f03',
+				fillOpacity: 0.5
+			}).addTo(map);
+			//circle.bindPopup( "{{ device.description.name }}" );
+		{% endfor %}*/
+
+	});
+</script>
+=======
+<script src="/truckster/truckster/scripts/leaflet.js"></script>
+<script type="text/javascript" src="/truckster/truckster/scripts/populate-truckmap.js"></script>
+>>>>>>> michellestyling
+
+</body>
+</html>
+
+{% endblock %}
