@@ -37,13 +37,13 @@
 		var zoomLevel = 5;
 		var carrierHomeGps = [41.715317,-72.799067];
 		var map = L.map('map').setView(carrierHomeGps, zoomLevel);
-		var DeviceList = {{ device_objects | tojson | safe }};
+		var DeviceList = {};
 
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-		{% for device in device_objects %}
+		/*{% for device in device_objects %}
 			var circle = L.circle(	[{{ device.description.meta.location.gps.lat | safe }},
 									{{ device.description.meta.location.gps.long | safe }}],
 									 500, {
@@ -51,8 +51,8 @@
 				fillColor: '#f03',
 				fillOpacity: 0.5
 			}).addTo(map);
-			circle.bindPopup( "{{ device.description.name }}" );
-		{% endfor %}
+			//circle.bindPopup( "{{ device.description.name }}" );
+		{% endfor %}*/
 
 	});
 </script>
