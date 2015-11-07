@@ -53,9 +53,9 @@ def signin():
 def profile():
     return render_template('profile.html', **get_context())
 
-@app.errorhandler(404)
-def not_found(error):
-    return render_template('index.html', **get_context())
+# @app.errorhandler(404)
+# def not_found(error):
+#     return render_template('index.html', **get_context())
 
 def get_context():
     return current_app.config
