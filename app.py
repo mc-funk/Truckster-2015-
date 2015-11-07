@@ -13,14 +13,14 @@ my_loader = jinja2.ChoiceLoader([
     ])
 app.jinja_loader = my_loader
 
-root_bp = Blueprint(   '', 
+root_bp = Blueprint(   'root_bp', 
                         __name__,
                         static_url_path='/',
                         static_folder='build'
 )
 app.register_blueprint(root_bp, url_prefix='/')
 
-truckster_bp = Blueprint(   'truckster', 
+truckster_bp = Blueprint(   'truckster_bp', 
                             __name__,
                             static_url_path='/truckster',
                             static_folder='truckster'
