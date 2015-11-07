@@ -16,6 +16,11 @@ RUN \
 ADD docker/.bashrc /root/.bashrc
 ADD docker/.gitconfig /root/.gitconfig
 
+RUN wget http://nodejs.org/dist/v4.2.1/node-v4.2.1-linux-x64.tar.gz && \
+    tar -C /usr/local --strip-components 1 -xzf node-v4.2.1-linux-x64.tar.gz && \
+    printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc && \
+    npm install -g gulp
+
 # Set environment variables.
 ENV HOME /root
 
@@ -25,13 +30,12 @@ RUN cd /tmp && python /tmp/virtualenv.py venv && \
     /tmp/venv/bin/pip install -r /tmp/requirements.txt && \
     mkdir -p /opt/proj && cp -a /tmp/venv /opt/proj
 ADD package.json /tmp/package.json
-#RUN cd /tmp && npm install && \
-#    mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
-#ADD gulp /tmp/gulp
-#ADD gulpfile.js /tmp/gulpfile.js
-ADD app /opt/proj/app
-
-#RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
+RUN cd /tmp && npm install && \
+    mkdir -p /opt/proj && cp -a /tmp/node_modules /opt/proj
+ADD gulp /tmp/gulp
+ADD gulpfile.js /tmp/gulpfile.js
+ADD app /tmp/app
+RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 
 WORKDIR /opt/proj
 ADD app.py /opt/proj/app.py
@@ -42,4 +46,4 @@ EXPOSE 5000
 RUN adduser --disabled-password --gecos '' proj
 RUN chown proj:proj /opt/proj
 
-CMD ["./venv/bin/python", "app.py"]
+CMD ["./venv/bin/gunicorn", "app:app"]
