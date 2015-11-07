@@ -64,7 +64,9 @@
           fillOpacity: 0.5
         }).addTo(map);
 
-        circle.bindPopup( val['name'] );
+        popupContent = '<p>' + val['name'] +'<br />'+ '<button type="button">Stalk this Truck!</button></p>';
+        circle.bindPopup(popupContent);
+          // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>'); 
       });
     }
 
