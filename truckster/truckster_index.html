@@ -33,45 +33,54 @@
 <script type="text/javascript">
 	$(document).ready(function() {
     console.log("document ready");
+
+    var AllTruckData = jQuery.get("https://exo-foodtruck.firebaseio.com/trucks.json");
+    var zoomLevel = 9;
+    var exositeHomeGPS = [44.98014269999999,-93.28874739999999];
+    // set up the map
+    map = new L.Map('map');
+
+    // create the tile layer with correct attribution
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});
+
     function initmap() {
-	     // set up the map
-	      map = new L.Map('map');
 
-	       // create the tile layer with correct attribution
-	        var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-	         var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-	          var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});
+      // start the map in South-East England
+        map.setView(exositeHomeGPS,zoomLevel);
+        map.addLayer(osm);
+      }
 
-	           // start the map in South-East England
-	            map.setView(new L.LatLng(51.3, 0.7),9);
-	             map.addLayer(osm);
-             }
+    function add_food_trucks_to_map() {
+      $.each(AllTruckData.responseJSON, function(idx, val) { 
+        console.log("RID: ", idx, "Food Truck: ", val['name'])
+        var circle = L.circle(  [ val['status']['gps']['lat'],
+                                  val['status']['gps']['long']
+                                ],
+                     500, {
+          color: 'blue',
+          fillColor: '#f03',
+          fillOpacity: 0.5
+        }).addTo(map);
 
-             initmap();
-	/*	var zoomLevel = 5;
-		var carrierHomeGps = [41.715317,-72.799067];
-		var map = L.map('map');
-		var DeviceList = {};
+        circle.bindPopup( val['name'] );
+      });
+    }
+
+    initmap();
+    jQuery.when(AllTruckData).done(add_food_trucks_to_map)
 
 
-		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-		}).addTo(map);
+    // console.log(AllTruckData.responseJSON)
+    // $.each(AllTruckData.responseJSON, function(idx, val) { 
+    //   console.log("RID: ", idx, "Food Truck: ", val['name']) 
+    // });
 
-    map.setView(carrierHomeGps, zoomLevel);
 
-		/*{% for device in device_objects %}
-			var circle = L.circle(	[{{ device.description.meta.location.gps.lat | safe }},
-									{{ device.description.meta.location.gps.long | safe }}],
-									 500, {
-				color: 'blue',
-				fillColor: '#f03',
-				fillOpacity: 0.5
-			}).addTo(map);
-			//circle.bindPopup( "{{ device.description.name }}" );
-		{% endfor %}*/
 
-	});
+
+  });
 </script>
 
 </body>
