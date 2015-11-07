@@ -15,14 +15,14 @@ app.jinja_loader = my_loader
 
 root_bp = Blueprint(   'root_bp', 
                         __name__,
-                        # static_url_path='/',
+                        static_url_path='/',
                         static_folder='build'
 )
 app.register_blueprint(root_bp, url_prefix='/')
 
 truckster_bp = Blueprint(   'truckster_bp', 
                             __name__,
-                            # static_url_path='/',
+                            static_url_path='/',
                             static_folder='truckster'
 )
 app.register_blueprint(truckster_bp, url_prefix='/truckster')
