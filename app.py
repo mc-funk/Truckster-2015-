@@ -45,6 +45,11 @@ def trucks():
 def signin():
     return render_template('truckster_web/templates/signin.html', **get_context())
 
+@app.route('/profile')
+def signin():
+    return render_template('truckster_web/templates/profile.html', **get_context())
+
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('index.html', **get_context())
