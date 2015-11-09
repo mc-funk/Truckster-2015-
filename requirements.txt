@@ -1,2 +1,4 @@
 flask
 gunicorn
+requests==2.8.1
+haversine==0.4.4
