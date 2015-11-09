@@ -2,7 +2,7 @@ $(document).ready(function(){
       console.log("document ready");
 
       var AllTruckData = jQuery.get("https://exo-foodtruck.firebaseio.com/trucks.json");
-      var zoomLevel = 9;
+      var zoomLevel = 12;
       var exositeHomeGPS = [44.98014269999999,-93.28874739999999];
       // set up the map
       map = new L.Map('map');
@@ -10,7 +10,7 @@ $(document).ready(function(){
       // create the tile layer with correct attribution
       var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-      var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});
+      var osm = new L.TileLayer(osmUrl, {minZoom: 8, attribution: osmAttrib});
       var truckOnline;
       var outlineColor;
       var fillsColor;
@@ -38,7 +38,7 @@ $(document).ready(function(){
           var circle = L.circle(  [ val['status']['gps']['lat'],
                                     val['status']['gps']['long']
                                   ],
-                       500, {
+                       150, {
             color: outlineColor,
             fillColor: fillsColor,
             fillOpacity: 0.8
