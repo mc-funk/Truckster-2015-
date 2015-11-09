@@ -1,6 +1,10 @@
+# pylint: disable=W0312
 import os
 import sys
-from flask import Flask, render_template, current_app, Blueprint
+from flask import Flask, render_template, current_app, Blueprint, request,\
+                    flash, Markup
+import requests, json
+from urllib.parse import quote_plus
 import jinja2
 app = Flask(__name__,
             # static_folder='build',
@@ -37,15 +41,43 @@ print("URL_MAP :: ", app.url_map)
 
 # import sys
 # sys.exit()
-
+FB_URL = "https://exo-foodtruck.firebaseio.com/trucks"
 @root_bp.route('/', methods=['GET'])
 def index():
     print("Hit root")
     return render_template('index.html', **get_context())
 
-@truckster_bp.route('/', methods=['GET'])
+@truckster_bp.route('/', methods=['GET', 'POST'])
 def truckster():
-    print("Hit truckster ")
+    print("FORM :: ", request.form)
+    if request.method == 'POST':
+        linkurl = 'https://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false'.format(
+            quote_plus(
+                request.form.get('address')
+            )
+        )
+        linkblob = requests.get(linkurl).json()
+        latlong = linkblob['results'][0]['geometry']['location']
+        subscriber_info = { 
+                            "name": request.form.get('name'),
+                            "contact_method": request.form.get('contact_method'),
+                            "contact": request.form.get('contact'),
+                            "addresses": [
+                                {
+                                    "address_string": latlong,
+                                    "geofence_data": 1 # 1 mile radius
+                                }
+                            ]
+        }
+        TruckSubscribers_URL = FB_URL+'/'+request.form.get('rid')+'/subscribers/.json'
+        # get current list of subscribers first
+        current_subscribers = requests.get(TruckSubscribers_URL).json()
+        print(current_subscribers)
+        print("FIREBASE PATCH :: ", requests.patch(
+            TruckSubscribers_URL, data=json.dumps(current_subscribers.append(subscriber_info))))
+
+        flash("Successfully subscribed {0} to truck {1}".format(
+            request.form.get('contact_info'), request.form.get('truck_name')))
     return render_template('truckster_index.html', **get_context())
 
 @truckster_bp.route('/trucks')
@@ -70,10 +102,11 @@ def get_context():
 
 app.register_blueprint(root_bp)
 app.register_blueprint(truckster_bp, url_prefix='/truckster')
-
+# set the secret key.  keep this really secret:
+app.secret_key = 'TrUcKSTeR'
 if __name__ == '__main__':
     if 'debug' in sys.argv:
         app.run(debug=True, port=3002)
     else:
         port = int(os.environ.get("PORT", 5000))
-        app.run(host='0.0.0.0', debug=True, port=port)
+        app.run(host='0.0.0.0', debug = True, port=port)
