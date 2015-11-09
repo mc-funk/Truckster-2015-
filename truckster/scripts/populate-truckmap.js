@@ -11,6 +11,9 @@ $(document).ready(function(){
       var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
       var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});
+      var truckOnline;
+      var outlineColor;
+      var fillsColor;
 
       function initmap() {
 
@@ -21,14 +24,24 @@ $(document).ready(function(){
 
       function add_food_trucks_to_map() {
         $.each(AllTruckData.responseJSON, function(idx, val) {
-          console.log("RID: ", idx, "Food Truck: ", val['name'])
+          console.log("RID: ", idx, "Food Truck: ", val['name']);
+          console.log("Val:", val);
+          truckOnline = val['status']['online'];
+          if (truckOnline == true) {
+            fillsColor = "#B83C30";
+            outlineColor = "#AC7143"
+          } else {
+            outlineColor = '#000000';
+            fillsColor = '#222222';
+          }
+
           var circle = L.circle(  [ val['status']['gps']['lat'],
                                     val['status']['gps']['long']
                                   ],
                        500, {
-            color: 'blue',
-            fillColor: '#f03',
-            fillOpacity: 0.5
+            color: outlineColor,
+            fillColor: fillsColor,
+            fillOpacity: 0.8
           }).addTo(map);
 
           popupContent = '<p>' + val['name'] +'<br />'+ '<button type="button" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
