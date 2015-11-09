@@ -4,8 +4,17 @@
 <link href="/truckster/truckster/styles/leaflet.css" rel="stylesheet">
 
 <div class="container-fluid">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
   <div class="row">
-    <div class="col-md-8" id="map"></div>
+    <div class="container col-md-8" id="map"></div>
     <div class="col-md-4 rsidebar sidebar">
       <div class="sidebar-box featured-truck">
         <h4>Featured Truck</h4>
