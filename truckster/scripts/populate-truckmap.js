@@ -17,6 +17,7 @@ $(document).ready(function(){
       var outlineColor;
       var fillsColor;
       var circles = {};
+      var openStatus;
 
       function initmap() {
 
@@ -33,9 +34,11 @@ $(document).ready(function(){
           if (truckOnline == true) {
             fillsColor = "#B83C30";
             outlineColor = "#AC7143"
+            openStatus = "Currently open here!"
           } else {
             outlineColor = '#000000';
             fillsColor = '#222222';
+            openStatus = "Closed, last seen here"
           }
 
           circles[val['name']] = L.circle(  [ val['status']['gps']['lat'],
@@ -46,7 +49,6 @@ $(document).ready(function(){
             fillColor: fillsColor,
             fillOpacity: 0.8
           }).addTo(map);
-
 
           var subscribe_form = "<p>" + val['name'] + "</p><br />\
                                   <form action='/truckster/' method='post'>\
@@ -66,6 +68,10 @@ $(document).ready(function(){
 
           // popupContent = '<p>' + val['name'] +'<br />'+ '<button type="button" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
           popupContent = subscribe_form;
+
+          console.log('openStatus:', openStatus)
+
+          popupContent = '<p>' + val['name'] +'<br /><em>'+ openStatus + '</em><br /><button type="button" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
           circles[val['name']].bindPopup(popupContent);
             // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>');
         });
@@ -77,13 +83,14 @@ $(document).ready(function(){
       });
       myFirebaseRef.on('value', function(dataSnapshot) {
         console.log("Map refreshing - new data");+
-        console.log(dataSnapshot.val()['trucks']);
-        console.log('circles: ', circles);
+        //console.log(dataSnapshot.val()['trucks']);
+        //console.log('circles: ', circles);
+        var updatedTruckData = dataSnapshot.val()['trucks'];
         for (var drawnCircle in circles) {
-          console.log("drawnCircle", drawnCircle);
+          //console.log("drawnCircle", drawnCircle);
           map.removeLayer(circles[drawnCircle]);
         }
-        add_food_trucks_to_map(dataSnapshot.val()['trucks']);
+        add_food_trucks_to_map(updatedTruckData);
       });
 
 
