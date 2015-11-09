@@ -10,7 +10,7 @@ $(document).ready(function(){
       var map = new L.Map('map');
 
       // create the tile layer with correct attribution
-      var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
       var osm = new L.TileLayer(osmUrl, {minZoom: 8, attribution: osmAttrib});
       var truckOnline;
@@ -28,7 +28,7 @@ $(document).ready(function(){
       function add_food_trucks_to_map(data) {
         $.each(data, function(idx, val) {
           console.log("RID: ", idx, "Food Truck: ", val['name']);
-          console.log("Val:", val);
+          console.log("Val name:", val['name']);
           truckOnline = val['status']['online'];
           if (truckOnline == true) {
             fillsColor = "#B83C30";
@@ -60,7 +60,11 @@ $(document).ready(function(){
       myFirebaseRef.on('value', function(dataSnapshot) {
         console.log("Map refreshing - new data");+
         console.log(dataSnapshot.val()['trucks']);
-        map.removeLayer(circles);
+        console.log('circles: ', circles);
+        for (var drawnCircle in circles) {
+          console.log("drawnCircle", drawnCircle);
+          map.removeLayer(circles[drawnCircle]);
+        }
         add_food_trucks_to_map(dataSnapshot.val()['trucks']);
       });
 
