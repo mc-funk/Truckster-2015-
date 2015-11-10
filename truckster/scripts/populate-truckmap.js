@@ -61,12 +61,12 @@ $(document).ready(function(){
                                       <br>\
                                       Notify when within 1KM of address: <input type='text' name='address' value=''>\
                                       <br>\
-                                      <input class="addtruck btn btn-primary btn-sm" type='submit' value='Stalk this truck!'>\
+                                      <input class='addtruck btn btn-primary btn-sm' type='submit' value='Stalk this truck!'>\
                                   </form>"
 
           // popupContent = '<p>' + val['name'] +'<br />'+ '<button type="button" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
           popupContent = subscribe_form;
-          circle.bindPopup(popupContent);
+          circles[val['name']].bindPopup(popupContent);
             // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>');
         });
       }

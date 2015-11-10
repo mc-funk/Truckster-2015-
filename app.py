@@ -58,23 +58,37 @@ def truckster():
         )
         linkblob = requests.get(linkurl).json()
         latlong = linkblob['results'][0]['geometry']['location']
-        subscriber_info = { 
-                            "name": request.form.get('name'),
-                            "contact_method": request.form.get('contact_method'),
-                            "contact": request.form.get('contact'),
-                            "addresses": [
-                                {
-                                    "address_string": latlong,
-                                    "geofence_data": 1 # 1 mile radius
-                                }
-                            ]
+        subscriber_info = { request.form.get('contact'): {
+                                "name": request.form.get('name'),
+                                "contact_method": request.form.get('contact_method'),
+                                "addresses": [
+                                    {
+                                        "address_string": latlong,
+                                        "geofence_data": 1 # 1 mile radius
+                                    }
+                                ]
+                            }
         }
-        TruckSubscribers_URL = FB_URL+'/'+request.form.get('rid')+'/subscribers/.json'
-        # get current list of subscribers first
-        current_subscribers = requests.get(TruckSubscribers_URL).json()
-        print(current_subscribers)
-        print("FIREBASE PATCH :: ", requests.patch(
-            TruckSubscribers_URL, data=json.dumps(current_subscribers.append(subscriber_info))))
+        Subscribe_URL = FB_URL+'/'+request.form.get('rid')+'/subscribers/.json'
+        print("Posting to URL: ", Subscribe_URL)
+        # use email as subscriber key
+        new_subscription = { request.form.get('contact').replace('.','-'): {
+                                    "name": request.form.get('name'),
+                                    "contact_method": request.form.get('contact_method'),
+                                    "addresses": [
+                                        {
+                                            "address_string": latlong,
+                                            "geofence_data": 1 # 1 mile radius
+                                        }
+                                    ]
+                                }
+        }
+        print(new_subscription)
+        response = requests.post(Subscribe_URL,json=new_subscription)
+        print("Subscribe response: ", response)
+        print("Subscribe response: ", response.text)
+        print("Subscribe response: ", response.reason)
+
 
         flash("Successfully subscribed {0} to truck {1}".format(
             request.form.get('contact_info'), request.form.get('truck_name')))
