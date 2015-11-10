@@ -40,6 +40,7 @@ RUN cd /tmp && gulp prod && cp -a /tmp/build /opt/proj
 WORKDIR /opt/proj
 ADD truckster /opt/proj/truckster
 ADD app.py /opt/proj/app.py
+ADD proximity_calculator.py /opt/proj/proximity_calculator.py
 ADD config /opt/proj/config
 
 EXPOSE 5000
@@ -48,3 +49,4 @@ RUN adduser --disabled-password --gecos '' proj
 RUN chown proj:proj /opt/proj
 
 CMD ["./venv/bin/gunicorn", "app:app"]
+CMD ["./venv/bin/python", "proximity_calculator.py"]
