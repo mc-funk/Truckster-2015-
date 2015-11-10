@@ -30,6 +30,7 @@ body {
 .rsidebar {
   height: 550px;
   padding-left: 0;
+  padding-right: 0;
   background-color: #C9BDAB;
 }
 
