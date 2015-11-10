@@ -2,17 +2,8 @@
 {% block content %}
 <!-- <head meta name="viewport" content="width=device-width, initial-scale=1">-->
 <link href="/truckster/truckster/styles/leaflet.css" rel="stylesheet">
-
 <div class="container-fluid">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+
     <div class="row" id="subscribe" style="display: none">
     </div>
   <div class="row">

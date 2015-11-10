@@ -54,6 +54,7 @@ def index():
 def truckster():
     print("FORM :: ", request.form)
     if request.method == 'POST':
+        print("Form data: ", request.form)
         linkurl = 'https://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false'.format(
             quote_plus(
                 request.form.get('address')
@@ -94,7 +95,7 @@ def truckster():
 
 
         flash("Successfully subscribed {0} to truck {1}".format(
-            request.form.get('contact_info'), request.form.get('truck_name')))
+            request.form.get('contact'), request.form.get('truck_name')))
     return render_template('truckster_index.html', **get_context())
 
 @truckster_bp.route('/trucks')

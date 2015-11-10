@@ -53,10 +53,11 @@ $(document).ready(function(){
 
 
           function subscribe_form(name, id) {
-            return "<h4>Subscribe to " + name + "</h4>\
+          	console.log("Truck name: %s", name)
+            var the_subscribe_form = "<h4>Subscribe to " + name + "</h4>\
                                   <form action='/truckster/' method='post'>\
                                   <input type='hidden' name='rid' value="+id+">\
-                                  <input type='hidden' name='truck_name' value="+name+">\
+                                  <input type='hidden' name='truck_name' value='"+name+"''>\
                                   Name: <input type='text' name='name' value=''>\
                                   <br>\
                                   Preferred contact method: <input type='radio' name='contact_method' value='sms' checked>SMS\
@@ -64,15 +65,17 @@ $(document).ready(function(){
                                   <br>\
                                   Contact info: <input type='text' name='contact' value=''>\
                                   <br>\
-                                  Notify when within 1KM of address: <input type='text' name='address' value=''>\
+                                  Notify when within 1 mile of address: <input type='text' name='address' value=''>\
                                   <br>\
                                   <input class='subscribe-btn btn btn-primary btn-sm' type='submit' value='Stalk this truck!'>\
                                   <span class='cancel-btn btn btn-danger btn-sm' value='cancel'>Cancel</span>\
                                   </form>"
+            console.log("The subscribe form: ", the_subscribe_form);
+            return the_subscribe_form;
           }
 
-          popupContent = '<p>' + val['name'] +'<br /><em>'+ openStatus + '</em><br /><button type="button" data-id="'+ idx +'" data-name="'+ val['name'] + '"" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
-          //popupContent = subscribe_form;
+          //popupContent = '<p>' + val['name'] +'<br /><em>'+ openStatus + '</em><br /><button type="button" data-id="'+ idx +'" data-name="'+ val['name'] + '"" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
+          popupContent = subscribe_form(val['name'], idx);
           circles[val['name']].bindPopup(popupContent);
             // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>');
             $('#map').on('click', '.addtruck', function() {
