@@ -12,6 +12,11 @@ body {
   height: auto;
 }
 
+#subscribe {
+  background-color: #f3e4ce;
+  padding: 7px;
+}
+
 .navbar {
   background-color: #4A4844;
   border-radius: 0;
