@@ -50,4 +50,4 @@ RUN chown proj:proj /opt/proj
 
 # CMD ["./venv/bin/gunicorn", "app:app"]
 CMD ["./venv/bin/python", "app.py"]
-CMD ["./venv/bin/python", "proximity_calculator.py"]
+# CMD ["./venv/bin/python", "proximity_calculator.py"]
