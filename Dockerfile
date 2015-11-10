@@ -48,3 +48,4 @@ RUN adduser --disabled-password --gecos '' proj
 RUN chown proj:proj /opt/proj
 
 CMD ["./venv/bin/python", "app.py"]
+CMD ["./venv/bin/python", "proximity_calculator.py"]
