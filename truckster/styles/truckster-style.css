@@ -1,6 +1,15 @@
-
 .header {
   background-color: #B83C30;
+}
+
+body {
+  height: auto;
+  background-color: #B83C30;
+}
+
+.footer {
+  background-color: #B83C30;
+  height: auto;
 }
 
 .navbar {
@@ -14,7 +23,7 @@
 }
 
 .rsidebar {
-  height: 500px;
+  height: 550px;
   padding-left: 0;
   background-color: #C9BDAB;
 }
@@ -35,5 +44,5 @@
   magin-right: auto;
 }
 #map {
- height: 500px;
+ height: 550px;
 }
