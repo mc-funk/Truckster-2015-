@@ -47,5 +47,4 @@ EXPOSE 5000
 RUN adduser --disabled-password --gecos '' proj
 RUN chown proj:proj /opt/proj
 
-CMD ["venv/bin/python", "--version"]
 CMD ["./venv/bin/gunicorn", "app:app"]

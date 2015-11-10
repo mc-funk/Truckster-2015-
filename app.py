@@ -4,7 +4,10 @@ import sys
 from flask import Flask, render_template, current_app, Blueprint, request,\
                     flash, Markup
 import requests, json
-from urllib.parse import quote_plus
+try:
+    from urllib.parse import quote_plus
+except:
+    from urllib import quote_plus
 import jinja2
 app = Flask(__name__,
             # static_folder='build',
