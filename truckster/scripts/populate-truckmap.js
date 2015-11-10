@@ -59,11 +59,13 @@ $(document).ready(function(){
                                   <input type='hidden' name='rid' value="+id+">\
                                   <input type='hidden' name='truck_name' value='"+name+"''>\
                                   Name: <input type='text' name='name' value=''>\
+                                  <input type='hidden' name='truck_name' value="+name+">\
+                                  Name: <input type='text' name='name' value='' required>\
                                   <br>\
                                   Preferred contact method: <input type='radio' name='contact_method' value='sms' checked>SMS\
                                   <input type='radio' name='contact_method' value='email'>Email\
                                   <br>\
-                                  Contact info: <input type='text' name='contact' value=''>\
+                                  Contact info: <input type='text' name='contact' value='' required>\
                                   <br>\
                                   Notify when within 1 mile of address: <input type='text' name='address' value=''>\
                                   <br>\
@@ -74,8 +76,8 @@ $(document).ready(function(){
             return the_subscribe_form;
           }
 
-          //popupContent = '<p>' + val['name'] +'<br /><em>'+ openStatus + '</em><br /><button type="button" data-id="'+ idx +'" data-name="'+ val['name'] + '"" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
-          popupContent = subscribe_form(val['name'], idx);
+          popupContent = '<p>' + val['name'] +'<br /><em>'+ openStatus + '</em><br /><button type="button" data-id="'+ idx +'" data-name="'+ val['name'] + '"" class="addtruck btn btn-primary btn-sm">Stalk this Truck!</button></p>';
+          //popupContent = subscribe_form(val['name'], idx);
           circles[val['name']].bindPopup(popupContent);
             // .setContent('<p>' + val['name'] +'<br />'+ '<button type="button">' + Stalk this Truck! + '</button></p>');
             $('#map').on('click', '.addtruck', function() {
