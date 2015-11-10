@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 
           function subscribe_form(name, id) {
-            return "<h4>" + name + "</h4>\
+            return "<h4>Subscribe to " + name + "</h4>\
                                   <form action='/truckster/' method='post'>\
                                   <input type='hidden' name='rid' value="+id+">\
                                   <input type='hidden' name='truck_name' value="+name+">\
