@@ -57,8 +57,6 @@ $(document).ready(function(){
             var the_subscribe_form = "<h4>Subscribe to " + name + "</h4>\
                                   <form action='/truckster/' method='post'>\
                                   <input type='hidden' name='rid' value="+id+">\
-                                  <input type='hidden' name='truck_name' value='"+name+"''>\
-                                  Name: <input type='text' name='name' value=''>\
                                   <input type='hidden' name='truck_name' value="+name+">\
                                   Name: <input type='text' name='name' value='' required>\
                                   <br>\
@@ -91,7 +89,6 @@ $(document).ready(function(){
             $('#subscribe').on('click', '.subscribe-btn, .cancel-btn', function() {
               console.log("Subscribe truck or cancel clicked");
               $('#subscribe').slideUp().empty();
-
             });
         });
 
